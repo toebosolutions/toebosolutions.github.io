@@ -14,12 +14,12 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #f2f5f7;
+      background: linear-gradient(180deg, #f0f4f8 0%, #e4eef4 100%);
       color: #1a1a1a;
     }
 
     header {
-      background-color: #fff;
+      background-color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -42,15 +42,17 @@
     }
 
     .hero {
-      padding: 80px 40px;
+      padding: 90px 40px;
       text-align: center;
       background: linear-gradient(145deg, #004f6e, #007f94);
       color: white;
+      animation: fadeIn 1s ease-in;
     }
 
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 10px;
+      animation: slideUp 1s ease-out;
     }
 
     .hero p {
@@ -62,6 +64,7 @@
       padding: 60px 40px;
       max-width: 1000px;
       margin: auto;
+      animation: fadeInUp 1.2s ease-in-out;
     }
 
     .section h2 {
@@ -127,6 +130,21 @@
       padding: 25px 40px;
       text-align: center;
       font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @media (max-width: 600px) {
