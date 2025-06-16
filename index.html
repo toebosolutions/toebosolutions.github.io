@@ -778,50 +778,66 @@
             document.querySelector('header').style.backgroundPositionY = scrollPosition * 0.5 + 'px';
         });
         
-        // Animaciones al hacer scroll
+        // Animaciones dinámicas al hacer scroll
         function animateOnScroll() {
             const sections = document.querySelectorAll('section');
             const cards = document.querySelectorAll('.card');
             const contactItems = document.querySelectorAll('.contact-list li');
             const formContainer = document.querySelector('.form-container');
             
+            // Verificar visibilidad de secciones
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
+                const sectionHeight = section.offsetHeight;
                 const windowHeight = window.innerHeight;
                 
-                if (sectionTop < windowHeight * 0.9) {
+                if (sectionTop < windowHeight * 0.75 && sectionTop > -sectionHeight * 0.5) {
                     section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
                 }
             });
             
+            // Verificar visibilidad de tarjetas
             cards.forEach((card, index) => {
                 const cardTop = card.getBoundingClientRect().top;
+                const cardHeight = card.offsetHeight;
                 const windowHeight = window.innerHeight;
                 
-                if (cardTop < windowHeight * 0.9) {
+                if (cardTop < windowHeight * 0.75 && cardTop > -cardHeight * 0.5) {
                     setTimeout(() => {
                         card.classList.add('visible');
-                    }, index * 150); // Retraso escalonado
+                    }, index * 100);
+                } else {
+                    card.classList.remove('visible');
                 }
             });
             
+            // Verificar visibilidad de elementos de contacto
             contactItems.forEach((item, index) => {
                 const itemTop = item.getBoundingClientRect().top;
+                const itemHeight = item.offsetHeight;
                 const windowHeight = window.innerHeight;
                 
-                if (itemTop < windowHeight * 0.9) {
+                if (itemTop < windowHeight * 0.75 && itemTop > -itemHeight * 0.5) {
                     setTimeout(() => {
                         item.classList.add('visible');
-                    }, index * 200); // Retraso escalonado
+                    }, index * 150);
+                } else {
+                    item.classList.remove('visible');
                 }
             });
             
+            // Verificar visibilidad del formulario
             if (formContainer) {
                 const formTop = formContainer.getBoundingClientRect().top;
+                const formHeight = formContainer.offsetHeight;
                 const windowHeight = window.innerHeight;
                 
-                if (formTop < windowHeight * 0.9) {
+                if (formTop < windowHeight * 0.75 && formTop > -formHeight * 0.5) {
                     formContainer.classList.add('visible');
+                } else {
+                    formContainer.classList.remove('visible');
                 }
             }
         }
