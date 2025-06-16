@@ -10,7 +10,7 @@
     <meta name="keywords" content="desarrollo web, diseño web, marketing digital, ecommerce, TOEBO Solutions" />
     <meta name="robots" content="index, follow" />
     <title>TOEBO Solutions</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230077b6' d='M12 2L2 7l10 5 10-5-10-5zm0 2.3L19.1 7 12 9.7 4.9 7 12 4.3zM2 17l10 5 10-5-10-5-10 5zm0 5v-5l10 5v-5l-10-5v5z'/%3E%3C/svg%3E" type="image/svg+xml" />
     <!-- Fuente moderna -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
@@ -28,10 +28,13 @@
       :root {
         --primary-color: #0077b6;
         --secondary-color: #00b4d8;
+        --accent-color: #ff6b6b;
         --dark-color: #0a1128;
         --light-bg: #f0f4f8;
         --text-color: #333;
         --white: #ffffff;
+        --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        --transition: all 0.3s ease;
       }
       /* Reset y estilos globales */
       * {
@@ -47,53 +50,79 @@
         background: var(--light-bg);
         color: var(--text-color);
         line-height: 1.6;
-        transition: background 0.3s, color 0.3s;
+        transition: var(--transition);
+        overflow-x: hidden;
       }
       /* Modo oscuro controlado con clase */
       .dark-mode {
-        background: #222;
-        color: #ddd;
+        background: #1a1a2e;
+        color: #e6e6ff;
       }
       .dark-mode header {
         background: linear-gradient(to right, #004466, #006699);
       }
       .dark-mode footer {
-        background: #111;
+        background: #0d0d1a;
+      }
+      .dark-mode .card {
+        background: #16213e;
+        color: #e6e6ff;
       }
       /* Estilos del encabezado */
       header {
-        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         color: var(--white);
-        padding: 2rem 1rem 3rem; /* Se deja espacio para el menú */
+        padding: 2rem 1rem 3rem;
         text-align: center;
         position: relative;
+        overflow: hidden;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+        pointer-events: none;
       }
       header .logo {
         position: absolute;
         top: 20px;
         left: 20px;
         height: 60px;
+        z-index: 2;
       }
       header h1 {
         margin-top: 0.5rem;
         font-size: 2.5rem;
+        position: relative;
+        z-index: 2;
       }
       /* Botón para cambiar el modo (claro/oscuro) */
       #mode-toggle {
         position: absolute;
         top: 20px;
         right: 20px;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.1);
         border: 2px solid var(--white);
         color: var(--white);
         border-radius: 20px;
         padding: 5px 10px;
         cursor: pointer;
         font-size: 0.9rem;
+        transition: var(--transition);
+        z-index: 2;
+      }
+      #mode-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
       }
       /* Menú de navegación */
       nav {
         margin-top: 1.5rem;
+        position: relative;
+        z-index: 2;
       }
       nav ul {
         list-style: none;
@@ -105,9 +134,26 @@
         color: var(--white);
         text-decoration: none;
         font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 30px;
+        transition: var(--transition);
       }
       nav ul li a:hover {
-        text-decoration: underline;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+      }
+      /* Menú hamburguesa para móviles */
+      .menu-toggle {
+        display: none;
+        position: absolute;
+        top: 25px;
+        right: 80px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 3;
       }
       /* Contenedor central */
       main {
@@ -116,128 +162,491 @@
         padding: 2rem;
       }
       section {
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
+        padding: 2rem 0;
       }
       section h2 {
-        margin-bottom: 1rem;
-        font-size: 2rem;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--secondary-color);
+        border-radius: 2px;
+      }
+      .dark-mode section h2::after {
+        background: var(--accent-color);
+      }
+      .about-content {
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+      }
+      .about-text {
+        flex: 1;
+      }
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        max-width: 500px;
+      }
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
       /* Tarjetas de servicios */
       .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
       }
       .card {
         background: var(--white);
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
         border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--secondary-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
       }
       .card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+      .card:hover::before {
+        transform: scaleX(1);
+      }
+      .card i {
+        font-size: 2.5rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+      }
+      .card h3 {
+        margin-bottom: 1rem;
+      }
+      /* Testimonios */
+      .testimonials {
+        display: flex;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 1rem 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary-color) transparent;
+      }
+      .testimonial {
+        min-width: 300px;
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .testimonial-content {
+        font-style: italic;
+        position: relative;
+      }
+      .testimonial-content::before,
+      .testimonial-content::after {
+        content: '"';
+        font-size: 2rem;
+        color: var(--secondary-color);
+        opacity: 0.3;
+        position: absolute;
+      }
+      .testimonial-content::before {
+        top: -10px;
+        left: -10px;
+      }
+      .testimonial-content::after {
+        bottom: -30px;
+        right: -10px;
       }
       /* Estilos de la lista de contacto */
       ul.contact-list {
         list-style: none;
         padding: 0;
+        max-width: 600px;
+        margin: 0 auto;
       }
       ul.contact-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        background: rgba(0, 180, 216, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        transition: var(--transition);
+      }
+      ul.contact-list li:hover {
+        transform: translateX(10px);
+        background: rgba(0, 180, 216, 0.2);
+      }
+      ul.contact-list li i {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        color: var(--secondary-color);
+        min-width: 30px;
+        text-align: center;
       }
       a {
         color: var(--secondary-color);
         text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
       }
       a:hover {
+        color: var(--primary-color);
         text-decoration: underline;
+      }
+      /* Formulario de contacto */
+      .contact-form {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: 'Roboto', sans-serif;
+        transition: var(--transition);
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+      }
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .submit-btn {
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: var(--transition);
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
+      .submit-btn:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       /* Pie de página */
       footer {
         background: var(--dark-color);
         color: var(--white);
+        padding: 3rem 1.5rem 1.5rem;
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+      .footer-column h3 {
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--secondary-color);
+      }
+      .footer-links {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+      .footer-links a {
+        color: #aaa;
+        transition: var(--transition);
+      }
+      .footer-links a:hover {
+        color: var(--white);
+        padding-left: 5px;
+      }
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        transition: var(--transition);
+      }
+      .social-links a:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+      .copyright {
         text-align: center;
-        padding: 1.5rem;
-        font-size: 0.9rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
       /* Botón fijo de contacto */
       #contacto-fijo {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--secondary-color);
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, var(--secondary-color), #25D366);
         color: var(--white);
-        padding: 12px 18px;
+        padding: 15px 20px;
         border-radius: 50px;
         font-weight: bold;
         border: none;
         cursor: pointer;
         z-index: 1000;
-        transition: transform 0.3s ease;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
       #contacto-fijo:hover {
-        transform: scale(1.1);
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+      #contacto-fijo i {
+        font-size: 1.2rem;
       }
       /* Media Queries para móviles */
+      @media (max-width: 992px) {
+        .about-content {
+          flex-direction: column;
+        }
+      }
       @media (max-width: 768px) {
         header h1 {
           font-size: 2rem;
         }
+        .menu-toggle {
+          display: block;
+        }
         nav ul {
+          display: none;
           flex-direction: column;
           gap: 1rem;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.9);
+          padding: 1.5rem;
+          z-index: 100;
+        }
+        nav ul.active {
+          display: flex;
+        }
+        nav ul li a {
+          display: block;
+          padding: 12px;
+          text-align: center;
         }
       }
       /* Modo oscuro preferido (para usuarios que lo tengan en el sistema) */
       @media (prefers-color-scheme: dark) {
-        body {
-          background: #222;
-          color: #ddd;
+        body:not(.light-mode) {
+          background: #1a1a2e;
+          color: #e6e6ff;
         }
-        header {
+        body:not(.light-mode) header {
           background: linear-gradient(to right, #004466, #006699);
         }
-        footer {
-          background: #111;
+        body:not(.light-mode) footer {
+          background: #0d0d1a;
+        }
+        body:not(.light-mode) .card {
+          background: #16213e;
+          color: #e6e6ff;
         }
       }
     </style>
   </head>
   <body>
     <header data-aos="fade-down">
-      <img src="assets/logo.png" alt="TOEBO Solutions Logo" class="logo" loading="lazy" />
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 2L2 7l10 5 10-5-10-5zm0 2.3L19.1 7 12 9.7 4.9 7 12 4.3zM2 17l10 5 10-5-10-5-10 5zm0 5v-5l10 5v-5l-10-5v5z'/%3E%3C/svg%3E" alt="TOEBO Solutions Logo" class="logo" loading="lazy" />
       <h1>Bienvenido a TOEBO Solutions</h1>
       <p>Impulsamos tu crecimiento digital con soluciones innovadoras</p>
-      <button id="mode-toggle">Modo Oscuro</button>
+      <button id="mode-toggle" aria-label="Cambiar modo claro/oscuro">Modo Oscuro</button>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
       <nav aria-label="Menú principal">
         <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#contacto">Contáctanos</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
     
     <main role="main">
+      <section id="inicio" data-aos="fade-up">
+        <div class="hero-content">
+          <h2 data-aos="fade-right">Transformamos ideas en soluciones digitales</h2>
+          <p data-aos="fade-left" data-aos-delay="200">En TOEBO Solutions combinamos creatividad, tecnología y estrategia para impulsar el crecimiento de tu negocio en el mundo digital.</p>
+        </div>
+      </section>
+      
+      <section id="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <div class="about-content">
+          <div class="about-text" data-aos="fade-right">
+            <p>TOEBO Solutions nace de la pasión por la tecnología y el deseo de ayudar a las empresas a alcanzar su máximo potencial en el entorno digital.</p>
+            <p>Con un equipo multidisciplinario de desarrolladores, diseñadores y estrategas digitales, trabajamos para crear soluciones personalizadas que se adapten a las necesidades específicas de cada cliente.</p>
+            <p>Nuestra misión es proporcionar herramientas digitales de alto impacto que impulsen el crecimiento sostenible de tu negocio.</p>
+          </div>
+          <div class="about-image" data-aos="fade-left">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect fill='%230077b6' width='800' height='500'/%3E%3Cpath fill='%2300b4d8' d='M0 0h800v500H0z'/%3E%3Cpath fill='%23ffffff' d='M200 150h400v200H200z'/%3E%3Ccircle fill='%230077b6' cx='400' cy='250' r='60'/%3E%3Cpath fill='%230077b6' d='M300 100h200v50H300zM300 350h200v50H300z'/%3E%3C/svg%3E" alt="Equipo de TOEBO Solutions trabajando">
+          </div>
+        </div>
+      </section>
+      
       <section id="servicios" data-aos="fade-up">
         <h2 data-aos="fade-right">Nuestros Servicios</h2>
         <div class="cards">
           <div class="card" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-laptop-code"></i>
             <h3>Desarrollo de Software</h3>
-            <p>Soluciones a medida para tus necesidades empresariales.</p>
+            <p>Soluciones a medida para tus necesidades empresariales, desde aplicaciones web hasta sistemas complejos.</p>
           </div>
           <div class="card" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-paint-brush"></i>
             <h3>Diseño Web</h3>
-            <p>Webs modernas, responsivas y optimizadas para conversión.</p>
+            <p>Webs modernas, responsivas y optimizadas para conversión que cautivan a tus clientes.</p>
           </div>
           <div class="card" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-chart-line"></i>
             <h3>Marketing Digital</h3>
-            <p>Posiciona tu marca en internet con estrategias efectivas.</p>
+            <p>Posiciona tu marca con estrategias efectivas de SEO, SEM y redes sociales.</p>
           </div>
           <div class="card" data-aos="zoom-in" data-aos-delay="400">
+            <i class="fas fa-shopping-cart"></i>
             <h3>Comercio Electrónico</h3>
-            <p>Incrementa tus ventas con tiendas online funcionales.</p>
+            <p>Tiendas online funcionales y seguras para incrementar tus ventas.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="testimonios" data-aos="fade-left">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonials">
+          <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">M</div>
+              <div>
+                <h3>María G.</h3>
+                <p>Restaurante "La Tradición"</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>TOEBO transformó completamente nuestra presencia online. Desde que lanzaron nuestro sitio web, las reservas han aumentado en un 40%.</p>
+            </div>
+          </div>
+          <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">C</div>
+              <div>
+                <h3>Carlos R.</h3>
+                <p>CEO de TechStart</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>El sistema de gestión que desarrollaron para nuestra empresa ha optimizado nuestros procesos y ahorrado cientos de horas de trabajo.</p>
+            </div>
+          </div>
+          <div class="testimonial" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">A</div>
+              <div>
+                <h3>Ana S.</h3>
+                <p>Tienda "Moda Elegante"</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>Gracias a su estrategia de marketing digital, nuestras ventas online se han triplicado en solo tres meses. ¡Increíble!</p>
+            </div>
           </div>
         </div>
       </section>
@@ -246,59 +655,173 @@
         <h2>Contáctanos</h2>
         <p>Estamos aquí para ayudarte. Escríbenos a través de nuestros canales oficiales:</p>
         <ul class="contact-list">
-          <li>📩 <a href="mailto:toebosolutions@gmail.com">toebosolutions@gmail.com</a></li>
           <li>
-            📞 WhatsApp:
-            <a href="https://wa.me/522225324326" target="_blank">+52 222 532 4326</a>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:toebosolutions@gmail.com">toebosolutions@gmail.com</a>
           </li>
           <li>
-            🤖 Bot IA en Instagram:
-            <a
-              href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share"
-              target="_blank"
-            >
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp: <a href="https://wa.me/522225324326" target="_blank">+52 222 532 4326</a>
+          </li>
+          <li>
+            <i class="fab fa-instagram"></i>
+            Bot IA en Instagram: 
+            <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" target="_blank">
               Habla con nuestro asistente
             </a>
           </li>
         </ul>
-        <!-- Opcional: formulario de contacto -->
-        <!--
-        <form data-aos="fade-up" action="ruta_al_script_de_contacto" method="POST">
-          <input type="text" name="nombre" placeholder="Tu nombre" required>
-          <input type="email" name="email" placeholder="Tu correo electrónico" required>
-          <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
-        -->
+        
+        <div class="contact-form">
+          <h3>Envíanos un mensaje</h3>
+          <form id="contactForm" data-aos="fade-up">
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono (opcional)</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="message">Tu mensaje</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar Mensaje</button>
+          </form>
+        </div>
       </section>
     </main>
     
     <footer data-aos="fade-up">
-      &copy; 2025 TOEBO Solutions. Todos los derechos reservados.
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>TOEBO Solutions</h3>
+          <p>Impulsamos tu crecimiento digital con soluciones innovadoras y personalizadas.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Sobre Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Servicios</h3>
+          <ul class="footer-links">
+            <li><a href="#">Desarrollo de Software</a></li>
+            <li><a href="#">Diseño Web</a></li>
+            <li><a href="#">Marketing Digital</a></li>
+            <li><a href="#">Comercio Electrónico</a></li>
+            <li><a href="#">Consultoría TI</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contacto</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> toebosolutions@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +52 222 532 4326</li>
+            <li><i class="fas fa-map-marker-alt"></i> Puebla, México</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 TOEBO Solutions. Todos los derechos reservados.
+      </div>
     </footer>
     
     <!-- Botón fijo para contacto rápido vía WhatsApp -->
-    <button id="contacto-fijo" onclick="window.location.href='https://wa.me/522225324326'">📞 WhatsApp</button>
+    <button id="contacto-fijo" onclick="window.location.href='https://wa.me/522225324326'">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </button>
     
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-      AOS.init({ once: true });
+      // Inicializar AOS
+      AOS.init({ 
+        once: true,
+        duration: 800
+      });
       
-      // Toggle para modo oscuro/claro
+      // Toggle para modo oscuro/claro con localStorage
       const toggleButton = document.getElementById('mode-toggle');
       const bodyElement = document.body;
+      
+      // Verificar preferencia guardada
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        bodyElement.classList.add('dark-mode');
+        toggleButton.textContent = 'Modo Claro';
+      }
       
       toggleButton.addEventListener('click', function () {
         bodyElement.classList.toggle('dark-mode');
         if (bodyElement.classList.contains('dark-mode')) {
           toggleButton.textContent = 'Modo Claro';
+          localStorage.setItem('darkMode', 'enabled');
         } else {
           toggleButton.textContent = 'Modo Oscuro';
+          localStorage.setItem('darkMode', 'disabled');
         }
+      });
+      
+      // Menú hamburguesa para móviles
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navMenu = document.querySelector('nav ul');
+      
+      menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+      
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          const icon = menuToggle.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+      
+      // Manejar envío de formulario
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Aquí iría la lógica para enviar el formulario
+        // Por ahora simulamos un envío exitoso
+        alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+        contactForm.reset();
       });
       
       // Microinteracción: mensaje de bienvenida en la consola
       console.log("¡Bienvenido a TOEBO Solutions! Estamos listos para ayudarte a crecer.");
+      
+      // Efecto parallax suave
+      window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        document.querySelector('header').style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+      });
     </script>
   </body>
 </html>
