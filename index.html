@@ -36,6 +36,7 @@
         .dark-mode {
             background: #1a1a2e;
             color: #e6e6ff;
+            transition: background 0.5s ease, color 0.5s ease;
         }
         .dark-mode header {
             background: linear-gradient(135deg, #004466, #006699);
@@ -58,6 +59,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
         }
         
         header::before {
@@ -89,6 +91,7 @@
             font-weight: bold;
             color: var(--primary-color);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease-in-out;
         }
         
         header h1 {
@@ -433,6 +436,11 @@
             box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
         }
         
+        .dark-mode .form-group input:focus,
+        .dark-mode .form-group textarea:focus {
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.3);
+        }
+        
         .form-group textarea {
             min-height: 160px;
             resize: vertical;
@@ -451,12 +459,31 @@
             display: block;
             margin: 0 auto;
             width: 220px;
+            position: relative;
         }
         
         .submit-btn:hover {
             background: var(--primary-color);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-text {
+            transition: opacity 0.3s ease;
+        }
+        
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
         
         a {
@@ -503,11 +530,26 @@
             color: var(--white);
             font-size: 1.5rem;
             transition: var(--transition);
+            position: relative;
         }
         
         .social-links a:hover {
             background: var(--secondary-color);
             transform: translateY(-5px);
+        }
+        
+        .social-links a[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
         
         .copyright {
@@ -539,6 +581,32 @@
         #whatsapp-btn:hover {
             transform: scale(1.1) translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .confirmation-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeOut 3s forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         @media (max-width: 992px) {
@@ -587,14 +655,17 @@
             .form-container {
                 padding: 1.5rem;
             }
+            
+            .submit-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <!-- Logo original - reemplazar con tu imagen -->
-            <img src="assets/logo.png" alt="TOEBO Solutions Logo" class="logo">
+            <div class="logo">T</div>
         </div>
         <h1>TOEBO Solutions</h1>
         <p>Impulsamos tu crecimiento digital con soluciones innovadoras</p>
@@ -688,7 +759,11 @@
             
             <div class="form-container">
                 <h3>Envíanos un mensaje</h3>
-                <form id="contactForm">
+                <form id="contactForm" action="https://formspree.io/f/movwwgad" method="POST">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de TOEBO Solutions">
+                    <input type="hidden" name="_replyto" value="toebosolutions@gmail.com">
+                    <input type="hidden" name="_language" value="es">
+                    
                     <div class="form-group">
                         <label for="name">Nombre completo</label>
                         <input type="text" id="name" name="name" required placeholder="Tu nombre">
@@ -705,7 +780,10 @@
                         <label for="message">Tu mensaje</label>
                         <textarea id="message" name="message" required placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Enviar Mensaje</span>
+                        <span class="loader"></span>
+                    </button>
                 </form>
             </div>
         </section>
@@ -714,10 +792,10 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
             <div class="copyright">
                 &copy; 2025 TOEBO Solutions. Todos los derechos reservados.
@@ -730,124 +808,169 @@
     </a>
     
     <script>
-        // Toggle para modo oscuro/claro
-        const toggleButton = document.getElementById('mode-toggle');
-        const bodyElement = document.body;
-        
-        // Verificar preferencia guardada
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            bodyElement.classList.add('dark-mode');
-            toggleButton.textContent = 'Modo Claro';
-        }
-        
-        // Alternar modo oscuro
-        toggleButton.addEventListener('click', () => {
-            bodyElement.classList.toggle('dark-mode');
-            const isDark = bodyElement.classList.contains('dark-mode');
-            toggleButton.textContent = isDark ? 'Modo Claro' : 'Modo Oscuro';
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-        });
-        
-        // Animación suave al hacer clic en enlaces del menú
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle para modo oscuro/claro
+            const toggleButton = document.getElementById('mode-toggle');
+            const bodyElement = document.body;
+            
+            // Verificar preferencia guardada
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                bodyElement.classList.add('dark-mode');
+                toggleButton.textContent = 'Modo Claro';
+            }
+            
+            // Alternar modo oscuro
+            toggleButton.addEventListener('click', () => {
+                bodyElement.classList.toggle('dark-mode');
+                const isDark = bodyElement.classList.contains('dark-mode');
+                toggleButton.textContent = isDark ? 'Modo Claro' : 'Modo Oscuro';
+                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            });
+            
+            // Animación suave al hacer clic en enlaces del menú
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
-        
-        // Manejar envío de formulario
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            // Simulación de envío exitoso
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            contactForm.reset();
-        });
-        
-        // Efecto parallax para el encabezado
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            document.querySelector('header').style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-        });
-        
-        // Animaciones dinámicas al hacer scroll
-        function animateOnScroll() {
-            const sections = document.querySelectorAll('section');
-            const cards = document.querySelectorAll('.card');
-            const contactItems = document.querySelectorAll('.contact-list li');
-            const formContainer = document.querySelector('.form-container');
-            
-            // Verificar visibilidad de secciones
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionHeight = section.offsetHeight;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.75 && sectionTop > -sectionHeight * 0.5) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
+            // Efecto parallax para el encabezado
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                document.querySelector('header').style.backgroundPositionY = scrollPosition * 0.5 + 'px';
             });
             
-            // Verificar visibilidad de tarjetas
-            cards.forEach((card, index) => {
-                const cardTop = card.getBoundingClientRect().top;
-                const cardHeight = card.offsetHeight;
-                const windowHeight = window.innerHeight;
-                
-                if (cardTop < windowHeight * 0.75 && cardTop > -cardHeight * 0.5) {
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, index * 100);
-                } else {
-                    card.classList.remove('visible');
-                }
-            });
+            // Validación de email
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
             
-            // Verificar visibilidad de elementos de contacto
-            contactItems.forEach((item, index) => {
-                const itemTop = item.getBoundingClientRect().top;
-                const itemHeight = item.offsetHeight;
-                const windowHeight = window.innerHeight;
+            // Mostrar mensaje de confirmación
+            function showConfirmation() {
+                const confirmation = document.createElement('div');
+                confirmation.textContent = '✔️ ¡Gracias! Tu mensaje ha sido enviado.';
+                confirmation.classList.add('confirmation-message');
                 
-                if (itemTop < windowHeight * 0.75 && itemTop > -itemHeight * 0.5) {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, index * 150);
-                } else {
-                    item.classList.remove('visible');
-                }
-            });
+                const formContainer = document.querySelector('.form-container');
+                formContainer.insertBefore(confirmation, formContainer.firstChild);
+                
+                setTimeout(() => {
+                    confirmation.remove();
+                }, 3000);
+            }
             
-            // Verificar visibilidad del formulario
-            if (formContainer) {
-                const formTop = formContainer.getBoundingClientRect().top;
-                const formHeight = formContainer.offsetHeight;
-                const windowHeight = window.innerHeight;
-                
-                if (formTop < windowHeight * 0.75 && formTop > -formHeight * 0.5) {
-                    formContainer.classList.add('visible');
-                } else {
-                    formContainer.classList.remove('visible');
+            // Manejar envío de formulario
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const emailInput = this.querySelector('#email');
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const btnText = submitBtn.querySelector('.btn-text');
+                    const loader = submitBtn.querySelector('.loader');
+                    
+                    // Validar email
+                    if (!validateEmail(emailInput.value)) {
+                        emailInput.focus();
+                        alert('Por favor ingresa un email válido');
+                        return;
+                    }
+                    
+                    // Mostrar loader
+                    btnText.style.opacity = '0';
+                    loader.style.display = 'block';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: new FormData(this),
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        
+                        if (response.ok) {
+                            showConfirmation();
+                            this.reset();
+                        } else {
+                            const errorData = await response.json();
+                            if (errorData.errors) {
+                                const errorMsg = errorData.errors.map(error => error.message).join(', ');
+                                throw new Error(errorMsg);
+                            } else {
+                                throw new Error('Error al enviar el formulario');
+                            }
+                        }
+                    } catch (error) {
+                        alert('Error: ' + error.message);
+                    } finally {
+                        // Ocultar loader
+                        btnText.style.opacity = '1';
+                        loader.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+            
+            // Animaciones al hacer scroll - VERSIÓN MEJORADA
+            function animateOnScroll() {
+                const sections = document.querySelectorAll('section:not(.visible)');
+                const cards = document.querySelectorAll('.card:not(.visible)');
+                const contactItems = document.querySelectorAll('.contact-list li:not(.visible)');
+                const formContainer = document.querySelector('.form-container:not(.visible)');
+
+                // Animación para secciones
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < window.innerHeight * 0.75) {
+                        section.classList.add('visible');
+                    }
+                });
+
+                // Animación para tarjetas
+                cards.forEach((card, index) => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < window.innerHeight * 0.75) {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+
+                // Animación para elementos de contacto
+                contactItems.forEach((item, index) => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    if (itemTop < window.innerHeight * 0.75) {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, index * 150);
+                    }
+                });
+
+                // Animación para formulario
+                if (formContainer) {
+                    const formTop = formContainer.getBoundingClientRect().top;
+                    if (formTop < window.innerHeight * 0.75) {
+                        formContainer.classList.add('visible');
+                    }
                 }
             }
-        }
-        
-        // Inicializar animaciones al cargar y al hacer scroll
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Mensaje de bienvenida en la consola
-        console.log('¡Bienvenido a TOEBO Solutions! Estamos listos para ayudarte a crecer digitalmente.');
+            
+            // Inicializar animaciones
+            window.addEventListener('load', animateOnScroll);
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Mensaje de bienvenida en consola
+            console.log('¡Bienvenido a TOEBO Solutions! Estamos listos para ayudarte a crecer digitalmente.');
+        });
     </script>
 </body>
 </html>
