@@ -679,25 +679,38 @@
       opacity: 0.7;
     }
     
-    /* Botón WhatsApp */
-    #whatsapp-btn {
+    /* Botones flotantes */
+    .float-buttons {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #25D366;
-      color: white;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 100;
+    }
+    
+    .float-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 60px;
       height: 60px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      z-index: 100;
+      border-radius: 50%;
+      font-size: 1.8rem;
       transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      color: white;
+      text-decoration: none;
+    }
+    
+    #whatsapp-btn {
+      background: #25D366;
       animation: pulse 2s infinite;
+    }
+    
+    #instagram-btn {
+      background: #E1306C;
     }
     
     @keyframes pulse {
@@ -706,7 +719,7 @@
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
     
-    #whatsapp-btn:hover {
+    .float-btn:hover {
       transform: scale(1.1);
       animation: none;
     }
@@ -784,6 +797,17 @@
       
       .footer-content {
         grid-template-columns: 1fr;
+      }
+      
+      .float-buttons {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .float-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
       }
     }
     
@@ -924,6 +948,13 @@
               </div>
             </li>
             <li>
+              <i class="fab fa-instagram"></i>
+              <div>
+                <strong>Instagram</strong>
+                <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" target="_blank">Habla con nuestro asistente IA</a>
+              </div>
+            </li>
+            <li>
               <i class="fas fa-map-marker-alt"></i>
               <div>
                 <strong>Ubicación</strong>
@@ -1036,9 +1067,14 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/522225324326" id="whatsapp-btn" aria-label="Contactar por WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <div class="float-buttons">
+    <a href="https://wa.me/522225324326" id="whatsapp-btn" class="float-btn" aria-label="Contactar por WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
 
   <script>
     // Modo oscuro
