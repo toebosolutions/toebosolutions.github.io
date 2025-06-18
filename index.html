@@ -724,32 +724,11 @@
       animation: pulse 2s infinite;
     }
     
-    @keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(currentColor, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(currentColor, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(currentColor, 0);
-  }
-}
-
-#whatsapp-btn {
-  background: #25D366;
-  animation: pulse 2s infinite;
-}
-
-#instagram-btn {
-  background: #E1306C;
-  animation: pulse 2s infinite;
-}
-    
-    .float-btn:hover {
-      transform: scale(1.1);
-      animation: none;
-    }
+   739 @keyframes pulse {
+740   0% { box-shadow: 0 0 0 0 rgba(currentColor, 0.7); } /* <-- CAMBIO AQUÍ */
+741   70% { box-shadow: 0 0 0 12px rgba(currentColor, 0); } /* <-- CAMBIO AQUÍ */
+742   100% { box-shadow: 0 0 0 0 rgba(currentColor, 0); } /* <-- CAMBIO AQUÍ */
+743 }
     
     /* Responsive */
     @media (max-width: 992px) {
