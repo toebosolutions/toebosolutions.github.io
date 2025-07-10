@@ -385,7 +385,7 @@
       transform: scale(1.05);
     }
     
-    /* Servicios con badges discretos */
+    /* Servicios con barra de progreso */
     .services {
       background: var(--light-gray);
     }
@@ -409,12 +409,27 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      border-top: 4px solid var(--secondary-color);
     }
     
     .card:hover {
       transform: translateY(-10px);
       box-shadow: var(--shadow-hover);
+    }
+    
+    /* Barra de progreso en tarjetas */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      background: var(--secondary-color);
+      transition: width 0.5s ease;
+    }
+    
+    .card:hover::before {
+      width: 100%;
     }
     
     .card i {
@@ -442,37 +457,45 @@
       color: var(--primary-color);
       font-size: 1.6rem;
       font-weight: 700;
+      position: relative;
+      display: inline-block;
     }
     
     .dark-mode .card h3 { 
       color: var(--secondary-color); 
     }
     
+    /* Badge próximo en esquina */
     .coming-soon {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 15px;
+      right: 15px;
       background: var(--accent-color);
       color: white;
-      padding: 3px 10px;
-      font-size: 0.75rem;
+      padding: 5px 12px;
+      font-size: 0.8rem;
       font-weight: 600;
       border-radius: 20px;
-      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    /* Sección de blog con contraste mejorado */
-    .blog {
+    /* Sección Blog con corrección modo oscuro */
+    .blog-section {
       padding: 6rem 0;
-      background: var(--light-gray);
+      background: #f8f9fa;
     }
     
-    .dark-mode .blog {
+    .dark-mode .blog-section {
       background: #1a1a2e;
+      color: #e6e6ff;
     }
     
-    .dark-mode .blog-content {
-      color: #e6e6ff;
+    .blog-section .section-title {
+      color: var(--primary-color);
+    }
+    
+    .dark-mode .blog-section .section-title {
+      color: var(--secondary-color);
     }
     
     .blog-content {
@@ -484,6 +507,10 @@
     .blog-content p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
+    }
+    
+    .dark-mode .blog-content p {
+      color: #e6e6ff;
     }
     
     /* Contacto */
@@ -955,10 +982,6 @@
       .float-btn::after {
         display: none;
       }
-      
-      .coming-soon {
-        font-size: 0.7rem;
-      }
     }
     
     @media (max-width: 576px) {
@@ -982,8 +1005,7 @@
       <div class="header-content">
         <div class="logo-container">
           <div class="logo">
-            <!-- Logo PNG original -->
-            <img src="assets/logo.png" alt="TOEBO Solutions Logo">
+            <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
           </div>
           <div class="logo-text">
             <h1>TOEBO Solutions</h1>
@@ -1080,32 +1102,29 @@
         
         <div class="card">
           <i class="fas fa-shopping-cart"></i>
-          <h3>Comercio Electrónico
-            <span class="coming-soon">Próximamente</span>
-          </h3>
+          <span class="coming-soon">Próximamente</span>
+          <h3>Comercio Electrónico</h3>
           <p>Tiendas online funcionales y seguras con pasarelas de pago integradas para incrementar tus ventas.</p>
         </div>
         
         <div class="card">
           <i class="fas fa-mobile-alt"></i>
-          <h3>Aplicaciones Móviles
-            <span class="coming-soon">Próximamente</span>
-          </h3>
+          <span class="coming-soon">Próximamente</span>
+          <h3>Aplicaciones Móviles</h3>
           <p>Desarrollo de aplicaciones nativas e híbridas para iOS y Android que conectan con tus clientes.</p>
         </div>
         
         <div class="card">
           <i class="fas fa-cloud"></i>
-          <h3>Soluciones en la Nube
-            <span class="coming-soon">Próximamente</span>
-          </h3>
+          <span class="coming-soon">Próximamente</span>
+          <h3>Soluciones en la Nube</h3>
           <p>Migración, implementación y gestión de infraestructuras en la nube para mayor eficiencia y escalabilidad.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="blog" id="blog">
+  <section id="blog" class="blog-section">
     <div class="container">
       <h2 class="section-title">Nuestro Blog</h2>
       <div class="blog-content">
@@ -1215,7 +1234,7 @@
         <div class="footer-col">
           <div class="logo-container">
             <div class="logo">
-              <img src="assets/logo.png" alt="TOEBO Solutions Logo">
+              <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
             </div>
             <div class="logo-text">
               <h1>TOEBO Solutions</h1>
