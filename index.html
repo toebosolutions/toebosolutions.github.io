@@ -117,6 +117,16 @@
       transform: rotate(15deg);
     }
     
+    .logo img {
+      max-width: 80%;
+      max-height: 80%;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover img {
+      transform: scale(1.1);
+    }
+    
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -960,6 +970,12 @@
       .float-btn::after {
         display: none;
       }
+      
+      .coming-soon {
+        font-size: 0.7rem;
+        right: -70px;
+        width: 180px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -974,12 +990,6 @@
       .stats {
         grid-template-columns: 1fr;
       }
-      
-      .coming-soon {
-        font-size: 0.7rem;
-        right: -70px;
-        width: 180px;
-      }
     }
   </style>
 </head>
@@ -989,10 +999,8 @@
       <div class="header-content">
         <div class="logo-container">
           <div class="logo">
-            <!-- Mantenemos tu logo original -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
-              <path fill="var(--primary-color)" d="M12 2L2 7l10 5 10-5-10-5zm0 2.3L19.1 7 12 9.7 4.9 7 12 4.3zM2 17l10 5 10-5-10-5-10 5zm0 5v-5l10 5v-5l-10-5v5z"/>
-            </svg>
+            <!-- Logo original en PNG -->
+            <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
           </div>
           <div class="logo-text">
             <h1>TOEBO Solutions</h1>
@@ -1040,7 +1048,7 @@
           
           <div class="stats">
             <div class="stat-item">
-              <div class="number">2</div>
+              <div class="number">5+</div>
               <div class="label">Proyectos Completados</div>
             </div>
             <div class="stat-item">
@@ -1048,7 +1056,7 @@
               <div class="label">Clientes Satisfechos</div>
             </div>
             <div class="stat-item">
-              <div class="number">2</div>
+              <div class="number">3</div>
               <div class="label">Expertos en Tecnología</div>
             </div>
             <div class="stat-item">
@@ -1224,9 +1232,7 @@
         <div class="footer-col">
           <div class="logo-container">
             <div class="logo">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
-                <path fill="#ffffff" d="M12 2L2 7l10 5 10-5-10-5zm0 2.3L19.1 7 12 9.7 4.9 7 12 4.3zM2 17l10 5 10-5-10-5-10 5zm0 5v-5l10 5v-5l-10-5v5z"/>
-              </svg>
+              <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
             </div>
             <div class="logo-text">
               <h1>TOEBO Solutions</h1>
