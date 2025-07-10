@@ -110,21 +110,11 @@
       align-items: center;
       justify-content: center;
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
-    }
-    
-    .logo:hover {
-      transform: rotate(15deg);
     }
     
     .logo img {
       max-width: 80%;
       max-height: 80%;
-      transition: transform 0.3s ease;
-    }
-    
-    .logo:hover img {
-      transform: scale(1.1);
     }
     
     .logo-text {
@@ -137,7 +127,6 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin: 0;
-      letter-spacing: 1px;
     }
     
     .logo-text p {
@@ -206,7 +195,7 @@
       cursor: pointer;
     }
     
-    /* Hero section mejorada */
+    /* Hero section */
     .hero {
       background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
       background-size: cover;
@@ -226,7 +215,6 @@
       max-width: 900px;
       z-index: 2;
       padding-top: 80px;
-      animation: fadeInUp 1s ease;
     }
     
     .hero h2 {
@@ -266,8 +254,6 @@
       display: inline-block;
       cursor: pointer;
       border: 2px solid transparent;
-      position: relative;
-      overflow: hidden;
     }
     
     .btn-primary {
@@ -325,7 +311,7 @@
       border-radius: 2px;
     }
     
-    /* About section mejorada */
+    /* About section */
     .about-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -399,7 +385,7 @@
       transform: scale(1.05);
     }
     
-    /* Servicios mejorados con badges */
+    /* Servicios con badges discretos */
     .services {
       background: var(--light-gray);
     }
@@ -456,8 +442,6 @@
       color: var(--primary-color);
       font-size: 1.6rem;
       font-weight: 700;
-      position: relative;
-      display: inline-block;
     }
     
     .dark-mode .card h3 { 
@@ -466,19 +450,43 @@
     
     .coming-soon {
       position: absolute;
-      top: -10px;
-      right: -60px;
+      top: 10px;
+      right: 10px;
       background: var(--accent-color);
       color: white;
-      padding: 3px 15px;
-      font-size: 0.8rem;
+      padding: 3px 10px;
+      font-size: 0.75rem;
       font-weight: 600;
-      transform: rotate(45deg);
-      width: 200px;
-      text-align: center;
+      border-radius: 20px;
+      z-index: 10;
     }
     
-    /* Contacto mejorado */
+    /* Sección de blog con contraste mejorado */
+    .blog {
+      padding: 6rem 0;
+      background: var(--light-gray);
+    }
+    
+    .dark-mode .blog {
+      background: #1a1a2e;
+    }
+    
+    .dark-mode .blog-content {
+      color: #e6e6ff;
+    }
+    
+    .blog-content {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .blog-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Contacto */
     .contact {
       background: linear-gradient(to bottom right, #f0f4f8, #d9e6f2);
     }
@@ -683,7 +691,7 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     
-    /* Footer mejorado */
+    /* Footer */
     footer {
       background: var(--dark-color);
       color: var(--white);
@@ -788,7 +796,7 @@
       opacity: 0.7;
     }
     
-    /* Botones flotantes mejorados */
+    /* Botones flotantes */
     .float-buttons {
       position: fixed;
       bottom: 30px;
@@ -856,29 +864,6 @@
     
     .float-btn:hover::after {
       opacity: 1;
-    }
-    
-    /* Animaciones */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     /* Responsive */
@@ -973,8 +958,6 @@
       
       .coming-soon {
         font-size: 0.7rem;
-        right: -70px;
-        width: 180px;
       }
     }
     
@@ -999,8 +982,8 @@
       <div class="header-content">
         <div class="logo-container">
           <div class="logo">
-            <!-- Logo original en PNG -->
-            <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
+            <!-- Logo PNG original -->
+            <img src="assets/logo.png" alt="TOEBO Solutions Logo">
           </div>
           <div class="logo-text">
             <h1>TOEBO Solutions</h1>
@@ -1066,7 +1049,7 @@
           </div>
         </div>
         
-        <div class="about-image animate-on-scroll">
+        <div class="about-image">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TOEBO Solutions trabajando">
         </div>
       </div>
@@ -1077,25 +1060,25 @@
     <div class="container">
       <h2 class="section-title">Nuestros Servicios</h2>
       <div class="cards">
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-laptop-code"></i>
           <h3>Desarrollo de Software</h3>
           <p>Soluciones a medida para tus necesidades empresariales, desde aplicaciones web hasta sistemas complejos con tecnología de punta.</p>
         </div>
         
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-paint-brush"></i>
           <h3>Diseño Web</h3>
           <p>Webs modernas, responsivas y optimizadas para conversión que cautivan a tus clientes y mejoran tu presencia digital.</p>
         </div>
         
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-chart-line"></i>
           <h3>Marketing Digital</h3>
           <p>Posiciona tu marca con estrategias efectivas de SEO, SEM, redes sociales y marketing de contenidos.</p>
         </div>
         
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-shopping-cart"></i>
           <h3>Comercio Electrónico
             <span class="coming-soon">Próximamente</span>
@@ -1103,7 +1086,7 @@
           <p>Tiendas online funcionales y seguras con pasarelas de pago integradas para incrementar tus ventas.</p>
         </div>
         
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-mobile-alt"></i>
           <h3>Aplicaciones Móviles
             <span class="coming-soon">Próximamente</span>
@@ -1111,7 +1094,7 @@
           <p>Desarrollo de aplicaciones nativas e híbridas para iOS y Android que conectan con tus clientes.</p>
         </div>
         
-        <div class="card animate-on-scroll">
+        <div class="card">
           <i class="fas fa-cloud"></i>
           <h3>Soluciones en la Nube
             <span class="coming-soon">Próximamente</span>
@@ -1122,11 +1105,11 @@
     </div>
   </section>
 
-  <section id="blog" style="padding: 6rem 0; background: #f8f9fa;">
+  <section class="blog" id="blog">
     <div class="container">
       <h2 class="section-title">Nuestro Blog</h2>
-      <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Estamos preparando contenido valioso para compartir nuestro conocimiento sobre transformación digital. ¡Pronto estará disponible!</p>
+      <div class="blog-content">
+        <p>Estamos preparando contenido valioso para compartir nuestro conocimiento sobre transformación digital. ¡Pronto estará disponible!</p>
         <a href="#" class="btn btn-primary" style="pointer-events: none; opacity: 0.7;">Próximamente</a>
       </div>
     </div>
@@ -1232,7 +1215,7 @@
         <div class="footer-col">
           <div class="logo-container">
             <div class="logo">
-              <img src="https://i.ibb.co/0X0X0X0/logo.png" alt="TOEBO Solutions Logo">
+              <img src="assets/logo.png" alt="TOEBO Solutions Logo">
             </div>
             <div class="logo-text">
               <h1>TOEBO Solutions</h1>
@@ -1406,23 +1389,6 @@
         }
       });
     }
-
-    // Animaciones al hacer scroll
-    const observerOptions = {
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-      observer.observe(element);
-    });
   </script>
 </body>
 </html>
