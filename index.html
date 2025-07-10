@@ -12,7 +12,8 @@
     :root {
       --primary-color: #0077b6;
       --secondary-color: #00b4d8;
-      --accent-color: #ff6b6b;
+      --instagram-color: #833AB4; /* Nuevo color principal para Instagram */
+      --instagram-secondary: #C13584; /* Color secundario para efectos */
       --dark-color: #0a1128;
       --light-bg: #f0f4f8;
       --text-color: #333;
@@ -702,6 +703,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       color: white;
       text-decoration: none;
+      position: relative;
     }
     
     #whatsapp-btn {
@@ -710,7 +712,42 @@
     }
     
     #instagram-btn {
-      background: #E1306C;
+      background: var(--instagram-color);
+      /* Degradado sutil para mantener la esencia de Instagram */
+      background: linear-gradient(45deg, var(--instagram-color), var(--instagram-secondary));
+    }
+    
+    /* Icono personalizado para Instagram */
+    .instagram-icon {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 2px solid white;
+    }
+    
+    .instagram-icon::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      transform: translate(-50%, -50%);
+    }
+    
+    .instagram-icon::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
     }
     
     @keyframes pulse {
@@ -722,6 +759,29 @@
     .float-btn:hover {
       transform: scale(1.1);
       animation: none;
+      filter: brightness(1.1);
+    }
+    
+    /* Tooltip para botones flotantes */
+    .float-btn::after {
+      content: attr(aria-label);
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .float-btn:hover::after {
+      opacity: 1;
     }
     
     /* Responsive */
@@ -808,6 +868,10 @@
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
+      }
+      
+      .float-btn::after {
+        display: none; /* Ocultar tooltip en móviles */
       }
     }
     
@@ -1062,21 +1126,24 @@
       </div>
       
       <div class="copyright">
-        &copy; 2022 - 2025 TOEBO Solutions. Todos los derechos reservados.
+        &copy; <span id="current-year"></span> 2022 - 2025 TOEBO Solutions. Todos los derechos reservados.
       </div>
     </div>
   </footer>
 
   <div class="float-buttons">
-    <a href="https://wa.me/522225324326" id="whatsapp-btn" class="float-btn" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/522225324326" id="whatsapp-btn" class="float-btn" aria-label="Contactar por WhatsApp" title="Chat por WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram">
+    <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram" title="Asistente IA de Instagram">
       <i class="fab fa-instagram"></i>
     </a>
   </div>
 
   <script>
+    // Actualizar año automáticamente
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
     // Modo oscuro
     const toggleButton = document.getElementById('mode-toggle');
     const bodyEl = document.body;
