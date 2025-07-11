@@ -5,38 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TOEBO Solutions | Transformación Digital</title>
   <meta name="description" content="Impulsamos tu crecimiento digital con soluciones innovadoras de desarrollo web, marketing digital y comercio electrónico">
-  
-  <!-- SEO Optimization -->
-  <meta name="keywords" content="desarrollo web, marketing digital, ecommerce, aplicaciones móviles, diseño web, soluciones digitales, transformación digital">
-  <meta property="og:title" content="TOEBO Solutions | Transformación Digital">
-  <meta property="og:description" content="Impulsamos tu crecimiento digital con soluciones innovadoras">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://toebosolutions.com">
-  <meta name="twitter:card" content="summary_large_image">
-  
-  <!-- JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "TOEBO Solutions",
-    "url": "https://toebosolutions.com",
-    "logo": "https://toebosolutions.com/assets/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+52-222-532-4326",
-      "contactType": "Customer service",
-      "email": "toebosolutions@gmail.com"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Puebla",
-      "addressRegion": "Puebla",
-      "addressCountry": "MX"
-    }
-  }
-  </script>
-  
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230077b6' d='M12 2L2 7l10 5 10-5-10-5zm0 2.3L19.1 7 12 9.7 4.9 7 12 4.3zM2 17l10 5 10-5-10-5-10 5zm0 5v-5l10 5v-5l-10-5v5z'/%3E%3C/svg%3E" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -44,7 +12,6 @@
     :root {
       --primary-color: #0077b6;
       --secondary-color: #00b4d8;
-      --accent-color: #ff6b6b;
       --instagram-color: #833AB4;
       --facebook-color: #1877F2;
       --twitter-color: #1DA1F2;
@@ -54,7 +21,7 @@
       --text-color: #333;
       --white: #ffffff;
       --light-gray: #f8f9fa;
-      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition: all 0.3s ease;
       --shadow: 0 5px 15px rgba(0,0,0,0.08);
       --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
     }
@@ -361,43 +328,6 @@
       line-height: 1.8;
     }
     
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 30px;
-    }
-    
-    .stat-item {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 180, 216, 0.1);
-      border-radius: 10px;
-      transition: var(--transition);
-    }
-    
-    .stat-item:hover {
-      transform: translateY(-5px);
-      background: rgba(0, 180, 216, 0.15);
-    }
-    
-    .stat-item .number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    
-    .dark-mode .stat-item .number {
-      color: var(--secondary-color);
-    }
-    
-    .stat-item .label {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-    
     .about-image {
       border-radius: 12px;
       overflow: hidden;
@@ -411,15 +341,13 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
-      /* Optimización de imagen */
-      loading="lazy";
     }
     
     .about-image:hover img {
       transform: scale(1.05);
     }
     
-    /* Servicios con barra de progreso */
+    /* Servicios */
     .services {
       background: var(--light-gray);
     }
@@ -443,27 +371,12 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      border-top: 4px solid var(--secondary-color);
     }
     
     .card:hover {
       transform: translateY(-10px);
       box-shadow: var(--shadow-hover);
-    }
-    
-    /* Barra de progreso en tarjetas */
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 4px;
-      width: 0;
-      background: var(--secondary-color);
-      transition: width 0.5s ease;
-    }
-    
-    .card:hover::before {
-      width: 100%;
     }
     
     .card i {
@@ -478,12 +391,6 @@
       justify-content: center;
       border-radius: 50%;
       margin: 0 auto 1.5rem;
-      transition: var(--transition);
-    }
-    
-    .card:hover i {
-      transform: scale(1.1);
-      background: rgba(0,180,216,0.2);
     }
     
     .card h3 {
@@ -491,60 +398,10 @@
       color: var(--primary-color);
       font-size: 1.6rem;
       font-weight: 700;
-      position: relative;
-      display: inline-block;
     }
     
     .dark-mode .card h3 { 
       color: var(--secondary-color); 
-    }
-    
-    /* Badge próximo en esquina */
-    .coming-soon {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: var(--accent-color);
-      color: white;
-      padding: 5px 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* Sección Blog con corrección modo oscuro */
-    .blog-section {
-      padding: 6rem 0;
-      background: #f8f9fa;
-    }
-    
-    .dark-mode .blog-section {
-      background: #1a1a2e;
-      color: #e6e6ff;
-    }
-    
-    .blog-section .section-title {
-      color: var(--primary-color);
-    }
-    
-    .dark-mode .blog-section .section-title {
-      color: var(--secondary-color);
-    }
-    
-    .blog-content {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .blog-content p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .dark-mode .blog-content p {
-      color: #e6e6ff;
     }
     
     /* Contacto */
@@ -927,151 +784,6 @@
       opacity: 1;
     }
     
-    /* Sección de Preguntas Frecuentes */
-    .faq-section {
-      padding: 6rem 0;
-      background: #ffffff;
-    }
-    
-    .dark-mode .faq-section {
-      background: #1a1a2e;
-    }
-    
-    .faq-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .faq-item {
-      margin-bottom: 1.5rem;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-    
-    .faq-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-    
-    .faq-question {
-      padding: 20px 25px;
-      background: var(--light-gray);
-      color: var(--primary-color);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .dark-mode .faq-question {
-      background: #252a40;
-      color: var(--secondary-color);
-    }
-    
-    .faq-question i {
-      transition: transform 0.3s ease;
-    }
-    
-    .faq-answer {
-      padding: 0 25px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      background: var(--white);
-    }
-    
-    .dark-mode .faq-answer {
-      background: #1e293b;
-    }
-    
-    .faq-item.active .faq-answer {
-      padding: 20px 25px;
-      max-height: 500px;
-    }
-    
-    .faq-item.active .faq-question i {
-      transform: rotate(180deg);
-    }
-    
-    /* Cookie Consent */
-    #cookie-consent {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-      transform: translateY(100%);
-      transition: transform 0.5s ease;
-    }
-    
-    #cookie-consent.active {
-      transform: translateY(0);
-    }
-    
-    .cookie-text {
-      flex: 1;
-      min-width: 300px;
-      padding-right: 20px;
-    }
-    
-    .cookie-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .cookie-btn {
-      padding: 8px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      border: none;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-    
-    .cookie-btn.accept {
-      background: var(--secondary-color);
-      color: white;
-    }
-    
-    .cookie-btn.decline {
-      background: transparent;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-    
-    /* Notificación de formulario */
-    #form-notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 5px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: none;
-      transform: translateX(120%);
-      transition: transform 0.5s ease;
-    }
-    
-    #form-notification.active {
-      display: block;
-      transform: translateX(0);
-    }
-    
     /* Responsive */
     @media (max-width: 992px) {
       .about-content,
@@ -1120,8 +832,6 @@
         padding: 15px 20px;
         border-radius: 0;
         text-align: center;
-        /* Mejorar accesibilidad en móviles */
-        padding: 18px 25px;
       }
       
       nav ul li a::after {
@@ -1163,12 +873,6 @@
       .float-btn::after {
         display: none;
       }
-      
-      .btn {
-        /* Botones más grandes en móviles */
-        padding: 16px 35px;
-        font-size: 1.15rem;
-      }
     }
     
     @media (max-width: 576px) {
@@ -1179,40 +883,15 @@
       .hero p {
         font-size: 1rem;
       }
-      
-      .stats {
-        grid-template-columns: 1fr;
-      }
-      
-      .hero-buttons .btn {
-        width: 100%;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Cookie Consent -->
-  <div id="cookie-consent">
-    <div class="cookie-text">
-      Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies.
-    </div>
-    <div class="cookie-buttons">
-      <button class="cookie-btn decline">Rechazar</button>
-      <button class="cookie-btn accept">Aceptar</button>
-    </div>
-  </div>
-
-  <!-- Notificación de formulario -->
-  <div id="form-notification">
-    ¡Mensaje enviado con éxito! Te contactaremos pronto.
-  </div>
-  
   <header id="header">
     <div class="container">
       <div class="header-content">
         <div class="logo-container">
           <div class="logo">
-            <!-- LOGO ORIGINAL RESTAURADO -->
             <img src="assets/logo.png" alt="TOEBO Solutions Logo">
           </div>
           <div class="logo-text">
@@ -1229,8 +908,6 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#blog">Blog</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
         </nav>
@@ -1259,29 +936,10 @@
           <p>TOEBO Solutions nace de la pasión por la tecnología y el deseo de ayudar a las empresas a alcanzar su máximo potencial en el entorno digital.</p>
           <p>Contamos con un equipo multidisciplinario de desarrolladores, diseñadores y estrategas digitales que trabajamos para crear soluciones personalizadas que se adapten a las necesidades específicas de cada cliente.</p>
           <p>Nuestra misión es proporcionar herramientas digitales de alto impacto que impulsen el crecimiento sostenible de tu negocio.</p>
-          
-          <div class="stats">
-            <div class="stat-item">
-              <div class="number">5+</div>
-              <div class="label">Proyectos Completados</div>
-            </div>
-            <div class="stat-item">
-              <div class="number">100%</div>
-              <div class="label">Clientes Satisfechos</div>
-            </div>
-            <div class="stat-item">
-              <div class="number">3</div>
-              <div class="label">Expertos en Tecnología</div>
-            </div>
-            <div class="stat-item">
-              <div class="number">3</div>
-              <div class="label">Años de Experiencia</div>
-            </div>
-          </div>
         </div>
         
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TOEBO Solutions trabajando" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TOEBO Solutions trabajando">
         </div>
       </div>
     </div>
@@ -1311,122 +969,21 @@
         
         <div class="card">
           <i class="fas fa-shopping-cart"></i>
-          <span class="coming-soon">Próximamente</span>
           <h3>Comercio Electrónico</h3>
           <p>Tiendas online funcionales y seguras con pasarelas de pago integradas para incrementar tus ventas.</p>
         </div>
         
         <div class="card">
           <i class="fas fa-mobile-alt"></i>
-          <span class="coming-soon">Próximamente</span>
           <h3>Aplicaciones Móviles</h3>
           <p>Desarrollo de aplicaciones nativas e híbridas para iOS y Android que conectan con tus clientes.</p>
         </div>
         
         <div class="card">
           <i class="fas fa-cloud"></i>
-          <span class="coming-soon">Próximamente</span>
           <h3>Soluciones en la Nube</h3>
           <p>Migración, implementación y gestión de infraestructuras en la nube para mayor eficiencia y escalabilidad.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección de Preguntas Frecuentes -->
-  <section id="faq" class="faq-section">
-    <div class="container">
-      <h2 class="section-title">Preguntas Frecuentes</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Cuánto tiempo toma desarrollar un sitio web?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>El tiempo de desarrollo varía según la complejidad del proyecto. Sitios web básicos pueden estar listos en 2-3 semanas, mientras que proyectos más complejos pueden tomar de 1 a 3 meses. Realizamos una evaluación inicial para darte un cronograma preciso.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Qué incluye un servicio de marketing digital?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Nuestro servicio de marketing digital incluye estrategias personalizadas que pueden abarcar SEO (optimización para motores de búsqueda), publicidad en redes sociales, email marketing, creación de contenido y análisis de resultados. Creamos un plan específico según tus objetivos comerciales.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Ofrecen soporte después del lanzamiento?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Sí, ofrecemos diferentes planes de mantenimiento y soporte post-lanzamiento. Estos incluyen actualizaciones de seguridad, backups regulares, optimizaciones de rendimiento y soporte técnico. Los planes varían desde soporte básico hasta cobertura 24/7.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Cómo determinan el costo de un proyecto?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>El costo depende de varios factores: complejidad del proyecto, funcionalidades requeridas, tecnologías utilizadas y plazo de entrega. Realizamos un análisis detallado de tus necesidades para ofrecerte un presupuesto transparente y sin costos ocultos.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Trabajan con empresas fuera de Puebla?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>¡Absolutamente! Trabajamos con clientes en todo México y Latinoamérica. Utilizamos herramientas de colaboración remota que nos permiten trabajar eficientemente sin importar la ubicación. Tenemos soporte y capacidad en proyectos nacionales e internacionales.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Qué tecnologías utilizan para desarrollo web?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Trabajamos con las tecnologías más modernas y confiables: HTML5, CSS3, JavaScript (React, Vue), PHP (Laravel), Python (Django), bases de datos SQL y NoSQL, y sistemas de gestión de contenido como WordPress. Seleccionamos la mejor opción para cada proyecto.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Pueden ayudar a mejorar mi sitio web existente?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Sí, ofrecemos servicios de rediseño y optimización para sitios web existentes. Realizamos una auditoría completa para identificar áreas de mejora en rendimiento, diseño, usabilidad y SEO, luego implementamos las mejoras necesarias.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Qué diferencia a TOEBO Solutions de otras agencias?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Nuestra diferencia radica en el enfoque personalizado, la transparencia en procesos y costos, y nuestro compromiso con resultados medibles. Combinamos creatividad con metodologías ágiles para ofrecer soluciones que realmente impulsan el crecimiento de tu negocio.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="blog" class="blog-section">
-    <div class="container">
-      <h2 class="section-title">Nuestro Blog</h2>
-      <div class="blog-content">
-        <p>Estamos preparando contenido valioso para compartir nuestro conocimiento sobre transformación digital. ¡Pronto estará disponible!</p>
-        <a href="#" class="btn btn-primary" style="pointer-events: none; opacity: 0.7;">Próximamente</a>
       </div>
     </div>
   </section>
@@ -1489,9 +1046,6 @@
         <div class="form-container">
           <h3 class="form-title">Envía tu consulta</h3>
           <form id="contactForm" action="https://formspree.io/f/movwwgad" method="POST">
-            <!-- Campo honeypot para seguridad -->
-            <input type="text" name="_gotcha" style="display:none">
-            
             <div class="form-group">
               <label for="name">Nombre completo</label>
               <input type="text" id="name" name="name" required placeholder="Tu nombre">
@@ -1534,7 +1088,6 @@
         <div class="footer-col">
           <div class="logo-container">
             <div class="logo">
-              <!-- LOGO ORIGINAL RESTAURADO EN FOOTER -->
               <img src="assets/logo.png" alt="TOEBO Solutions Logo">
             </div>
             <div class="logo-text">
@@ -1575,9 +1128,8 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#blog">Blog</a></li>
             <li><a href="#contacto">Contacto</a></li>
+            <li><a href="https://blog.toebosolutions.com">Blog</a></li>
           </ul>
         </div>
         
@@ -1674,13 +1226,6 @@
     // Validación de formulario
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-      // Crear campo honeypot para seguridad
-      const honeypot = document.createElement('input');
-      honeypot.type = 'text';
-      honeypot.name = '_gotcha';
-      honeypot.style.display = 'none';
-      contactForm.appendChild(honeypot);
-      
       contactForm.addEventListener('submit', function(e) {
         let valid = true;
         
@@ -1688,12 +1233,6 @@
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const message = document.getElementById('message');
-        
-        // Detectar bots (si llenan el campo honeypot)
-        if(honeypot.value) {
-          e.preventDefault();
-          return false;
-        }
         
         if (name.value.trim() === '') {
           valid = false;
@@ -1717,61 +1256,10 @@
           message.style.borderColor = '#ddd';
         }
         
-        if (valid) {
-          e.preventDefault();
-          // Mostrar notificación
-          const notification = document.getElementById('form-notification');
-          notification.classList.add('active');
-          
-          // Simular envío exitoso
-          setTimeout(() => {
-            notification.classList.remove('active');
-            contactForm.reset();
-            alert('¡Mensaje enviado con éxito! Te contactaremos pronto.');
-          }, 3000);
-        } else {
+        if (!valid) {
           e.preventDefault();
           alert('Por favor, complete todos los campos requeridos correctamente.');
         }
-      });
-    }
-    
-    // Cookie Consent
-    const cookieConsent = document.getElementById('cookie-consent');
-    if (!localStorage.getItem('cookies-accepted')) {
-      setTimeout(() => {
-        cookieConsent.classList.add('active');
-      }, 2000);
-    }
-    
-    document.querySelector('.cookie-btn.accept').addEventListener('click', () => {
-      localStorage.setItem('cookies-accepted', 'true');
-      cookieConsent.classList.remove('active');
-    });
-    
-    document.querySelector('.cookie-btn.decline').addEventListener('click', () => {
-      cookieConsent.classList.remove('active');
-    });
-    
-    // Funcionalidad FAQ
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      question.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-    });
-    
-    // Monitoreo básico
-    document.querySelectorAll('a.btn, .float-btn, .submit-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        console.log('Clic en:', this.textContent || this.getAttribute('title'));
-      });
-    });
-    
-    if (contactForm) {
-      contactForm.addEventListener('submit', function() {
-        console.log('Formulario enviado');
       });
     }
   </script>
