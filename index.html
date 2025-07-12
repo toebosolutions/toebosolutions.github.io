@@ -1671,7 +1671,7 @@
       });
     });
 
-    // Validación de formulario
+    // Validación de formulario - CORREGIDO
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       // Crear campo honeypot para seguridad
@@ -1717,21 +1717,31 @@
           message.style.borderColor = '#ddd';
         }
         
-        if (valid) {
+        if (!valid) {
           e.preventDefault();
-          // Mostrar notificación
+          alert('Por favor, complete todos los campos requeridos correctamente.');
+        } else {
+          // Mostrar notificación y enviar el formulario
           const notification = document.getElementById('form-notification');
           notification.classList.add('active');
           
-          // Simular envío exitoso
+          // Deshabilitar botón para evitar múltiples envíos
+          const submitButton = contactForm.querySelector('.submit-btn');
+          const originalButtonText = submitButton.innerHTML;
+          submitButton.innerHTML = 'Enviando...';
+          submitButton.disabled = true;
+          
+          // Enviar formulario después de 1.5 segundos (para que se vea la notificación)
           setTimeout(() => {
+            // Aquí se enviaría realmente el formulario
+            // Pero como estamos usando Formspree, el envío se hace mediante el action del form
+            // Simulamos un envío exitoso
             notification.classList.remove('active');
             contactForm.reset();
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
             alert('¡Mensaje enviado con éxito! Te contactaremos pronto.');
-          }, 3000);
-        } else {
-          e.preventDefault();
-          alert('Por favor, complete todos los campos requeridos correctamente.');
+          }, 1500);
         }
       });
     }
