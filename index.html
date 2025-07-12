@@ -857,6 +857,18 @@
       opacity: 0.7;
     }
     
+    .admin-link {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+    
+    .admin-link:hover {
+      color: var(--secondary-color);
+    }
+    
     /* Botones flotantes */
     .float-buttons {
       position: fixed;
@@ -1645,8 +1657,12 @@
       <div class="about-content">
         <div class="about-text">
           <p>TOEBO Solutions nace de la pasión por la tecnología y el deseo de ayudar a las empresas a alcanzar su máximo potencial en el entorno digital.</p>
+          
+          <p><strong>Misión:</strong> Proporcionar herramientas digitales de alto impacto que impulsen el crecimiento sostenible de tu negocio.</p>
+          
+          <p><strong>Visión:</strong> Ser líderes en innovación digital, transformando la manera en que las empresas interactúan con la tecnología para crear un futuro más conectado y eficiente.</p>
+          
           <p>Contamos con un equipo multidisciplinario de desarrolladores, diseñadores y estrategas digitales que trabajamos para crear soluciones personalizadas que se adapten a las necesidades específicas de cada cliente.</p>
-          <p>Nuestra misión es proporcionar herramientas digitales de alto impacto que impulsen el crecimiento sostenible de tu negocio.</p>
           
           <div class="stats">
             <div class="stat-item">
@@ -1979,6 +1995,7 @@
       
       <div class="copyright">
         &copy; 2022 - <span id="current-year">2025</span> TOEBO Solutions. Todos los derechos reservados.
+        <a href="/admin" class="admin-link">Admin</a>
       </div>
     </div>
   </footer>
@@ -2115,7 +2132,7 @@
       });
     });
 
-    // Chat en vivo
+    // Chat en vivo con respuestas por palabras clave
     const chatToggle = document.getElementById('chat-toggle');
     const chatContainer = document.getElementById('chat-container');
     const closeChat = document.getElementById('close-chat');
@@ -2123,26 +2140,39 @@
     const chatInput = document.getElementById('chat-input');
     const sendMessageBtn = document.getElementById('send-message');
     
-    // Mensajes predefinidos del bot
-    const botResponses = [
-      "¡Claro! Puedo ayudarte con información sobre nuestros servicios de desarrollo web, marketing digital y más.",
-      "¿Te interesa conocer nuestros precios o tener una consulta gratuita?",
-      "Actualmente ofrecemos servicios de desarrollo web, marketing digital y próximamente comercio electrónico.",
-      "Puedes contactarnos directamente por WhatsApp al +52 222 532 4326 o enviarnos un email a toebosolutions@gmail.com.",
-      "Nuestro horario de atención es de lunes a viernes de 9:00 am a 6:00 pm.",
-      "Sí, trabajamos con empresas de toda Latinoamérica utilizando herramientas de colaboración remota."
-    ];
-    
-    // Abrir/cerrar chat
-    chatToggle.addEventListener('click', () => {
-      chatContainer.classList.toggle('active');
-      // Ocultar indicador al abrir
-      document.querySelector('.chat-indicator').style.display = 'none';
-    });
-    
-    closeChat.addEventListener('click', () => {
-      chatContainer.classList.remove('active');
-    });
+    // Función para obtener respuesta basada en palabras clave
+    function getBotResponse(userMessage) {
+      const lowerCaseMsg = userMessage.toLowerCase();
+      
+      // Palabras clave y respuestas
+      const keywordResponses = {
+        'hola': '¡Hola! ¿Cómo estás? En qué puedo ayudarte hoy?',
+        'adiós': '¡Hasta luego! Si tienes más preguntas, no dudes en contactarnos.',
+        'gracias': '¡De nada! Estoy aquí para ayudarte.',
+        'precio': 'Los precios varían según el proyecto. ¿Podrías darme más detalles?',
+        'costo': 'Los costos dependen de la complejidad del proyecto. ¿Qué servicio te interesa?',
+        'tiempo': 'El tiempo de desarrollo depende de la complejidad del proyecto. ¿Qué necesitas desarrollar?',
+        'servicio': 'Ofrecemos desarrollo web, marketing digital, comercio electrónico y más. ¿Qué servicio te interesa?',
+        'contacto': 'Puedes contactarnos por WhatsApp al +52 222 532 4326 o por email a toebosolutions@gmail.com',
+        'email': 'Nuestro email es toebosolutions@gmail.com',
+        'whatsapp': 'Puedes contactarnos por WhatsApp al +52 222 532 4326',
+        'web': 'Desarrollamos sitios web modernos, responsivos y optimizados para SEO. ¿Tienes un proyecto en mente?',
+        'marketing': 'Ofrecemos estrategias de marketing digital para aumentar tu presencia en línea. ¿Quieres saber más?',
+        'ecommerce': 'Próximamente ofreceremos soluciones de comercio electrónico. ¡Mantente al tanto!',
+        'app': 'Próximamente desarrollaremos aplicaciones móviles. ¿Te gustaría ser notificado cuando esté disponible?',
+        'nube': 'Próximamente ofreceremos soluciones en la nube. ¿Te gustaría saber más?'
+      };
+      
+      // Buscar palabra clave
+      for (const [keyword, response] of Object.entries(keywordResponses)) {
+        if (lowerCaseMsg.includes(keyword)) {
+          return response;
+        }
+      }
+      
+      // Respuesta por defecto si no encuentra palabra clave
+      return "Gracias por tu mensaje. ¿Puedes darme más detalles para poder ayudarte mejor?";
+    }
     
     // Enviar mensaje
     function sendMessage() {
@@ -2157,11 +2187,11 @@
         // Limpiar input
         chatInput.value = '';
         
+        // Obtener respuesta del bot
+        const botResponse = getBotResponse(message);
+        
         // Simular respuesta después de un tiempo
         setTimeout(() => {
-          const randomIndex = Math.floor(Math.random() * botResponses.length);
-          const botResponse = botResponses[randomIndex];
-          
           const botMessageEl = document.createElement('div');
           botMessageEl.className = 'message bot-message';
           botMessageEl.textContent = botResponse;
@@ -2182,6 +2212,17 @@
       if (e.key === 'Enter') {
         sendMessage();
       }
+    });
+    
+    // Abrir/cerrar chat
+    chatToggle.addEventListener('click', () => {
+      chatContainer.classList.toggle('active');
+      // Ocultar indicador al abrir
+      document.querySelector('.chat-indicator').style.display = 'none';
+    });
+    
+    closeChat.addEventListener('click', () => {
+      chatContainer.classList.remove('active');
     });
     
     // Mostrar indicador después de 20 segundos
