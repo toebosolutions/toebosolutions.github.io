@@ -1072,6 +1072,330 @@
       transform: translateX(0);
     }
     
+    /* Botón Volver Arriba */
+    #back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--secondary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+    
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #back-to-top:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px);
+    }
+    
+    /* Chat en vivo */
+    #live-chat {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 100;
+      max-width: 350px;
+      width: 100%;
+    }
+    
+    .chat-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: none;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .dark-mode .chat-container {
+      background: #1e293b;
+    }
+    
+    .chat-container.active {
+      display: block;
+      transform: translateY(0);
+    }
+    
+    .chat-header {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    
+    .close-chat {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    
+    .chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .message {
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      position: relative;
+    }
+    
+    .bot-message {
+      background: var(--light-gray);
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .dark-mode .bot-message {
+      background: #2d3748;
+      color: #e6e6ff;
+    }
+    
+    .user-message {
+      background: var(--secondary-color);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #eee;
+      background: #f8f9fa;
+    }
+    
+    .dark-mode .chat-input {
+      background: #1a202c;
+      border-color: #2d3748;
+    }
+    
+    .chat-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      outline: none;
+    }
+    
+    .dark-mode .chat-input input {
+      background: #2d3748;
+      border-color: #4a5568;
+      color: #e6e6ff;
+    }
+    
+    .chat-input button {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .chat-input button:hover {
+      background: var(--primary-color);
+    }
+    
+    .chat-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .chat-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    .chat-indicator {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      animation: pulse 1.5s infinite;
+    }
+    
+    /* Estadísticas */
+    .stats-badge {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(255,255,255,0.9);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .dark-mode .stats-badge {
+      background: rgba(30,41,59,0.9);
+      color: #e6e6ff;
+    }
+    
+    .stats-badge i {
+      color: var(--secondary-color);
+    }
+    
+    .stats-count {
+      font-weight: bold;
+      margin-left: 3px;
+    }
+    
+    /* Información dominio */
+    .domain-info {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-hover);
+      max-width: 300px;
+      z-index: 90;
+      display: none;
+      transform: translateX(150%);
+      transition: transform 0.5s ease;
+    }
+    
+    .dark-mode .domain-info {
+      background: rgba(30,41,59,0.95);
+      color: #e6e6ff;
+    }
+    
+    .domain-info.active {
+      display: block;
+      transform: translateX(0);
+    }
+    
+    .domain-info h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    
+    .dark-mode .domain-info h3 {
+      color: var(--secondary-color);
+    }
+    
+    .domain-info .close-domain {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
+    .dark-mode .domain-info .close-domain {
+      color: #e6e6ff;
+    }
+    
+    .domain-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 10px 0;
+      text-align: center;
+    }
+    
+    .dark-mode .domain-price {
+      color: var(--secondary-color);
+    }
+    
+    .domain-benefits {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .domain-benefits li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .dark-mode .domain-benefits li {
+      border-color: #2d3748;
+    }
+    
+    .domain-benefits li i {
+      color: var(--secondary-color);
+      margin-right: 10px;
+    }
+    
+    .domain-cta {
+      display: block;
+      text-align: center;
+      background: var(--secondary-color);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .domain-cta:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
       .about-content,
@@ -1086,6 +1410,11 @@
       
       .hero h2 {
         font-size: 3rem;
+      }
+      
+      #live-chat {
+        left: 20px;
+        max-width: 300px;
       }
     }
     
@@ -1120,7 +1449,6 @@
         padding: 15px 20px;
         border-radius: 0;
         text-align: center;
-        /* Mejorar accesibilidad en móviles */
         padding: 18px 25px;
       }
       
@@ -1165,9 +1493,37 @@
       }
       
       .btn {
-        /* Botones más grandes en móviles */
         padding: 16px 35px;
         font-size: 1.15rem;
+      }
+      
+      #back-to-top {
+        bottom: 90px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+      
+      #live-chat {
+        left: 15px;
+        bottom: 20px;
+        max-width: 90%;
+      }
+      
+      .chat-messages {
+        height: 250px;
+      }
+      
+      .stats-badge {
+        left: 15px;
+        bottom: 100px;
+      }
+      
+      .domain-info {
+        top: 80px;
+        right: 20px;
+        max-width: 280px;
       }
     }
     
@@ -1186,6 +1542,18 @@
       
       .hero-buttons .btn {
         width: 100%;
+      }
+      
+      .chat-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+      
+      .domain-info {
+        max-width: 90%;
+        right: 5%;
+        left: 5%;
       }
     }
   </style>
@@ -1207,12 +1575,32 @@
     ¡Mensaje enviado con éxito! Te contactaremos pronto.
   </div>
   
+  <!-- Información sobre dominio .com -->
+  <div class="domain-info" id="domain-info">
+    <button class="close-domain" id="close-domain">
+      <i class="fas fa-times"></i>
+    </button>
+    <h3>Tu dominio propio .com</h3>
+    <p>Un dominio personalizado mejora la credibilidad y profesionalismo de tu negocio.</p>
+    
+    <div class="domain-price">$15 USD/año</div>
+    
+    <ul class="domain-benefits">
+      <li><i class="fas fa-check-circle"></i> Mayor credibilidad</li>
+      <li><i class="fas fa-check-circle"></i> Mejor posicionamiento SEO</li>
+      <li><i class="fas fa-check-circle"></i> Correos profesionales</li>
+      <li><i class="fas fa-check-circle"></i> Marca profesional</li>
+      <li><i class="fas fa-check-circle"></i> Confianza para clientes</li>
+    </ul>
+    
+    <a href="#contacto" class="domain-cta">¡Quiero mi dominio!</a>
+  </div>
+  
   <header id="header">
     <div class="container">
       <div class="header-content">
         <div class="logo-container">
           <div class="logo">
-            <!-- LOGO ORIGINAL RESTAURADO -->
             <img src="assets/logo.png" alt="TOEBO Solutions Logo">
           </div>
           <div class="logo-text">
@@ -1534,7 +1922,6 @@
         <div class="footer-col">
           <div class="logo-container">
             <div class="logo">
-              <!-- LOGO ORIGINAL RESTAURADO EN FOOTER -->
               <img src="assets/logo.png" alt="TOEBO Solutions Logo">
             </div>
             <div class="logo-text">
@@ -1586,6 +1973,7 @@
           <p><i class="fas fa-map-marker-alt"></i> Puebla, México</p>
           <p><i class="fas fa-phone"></i> +52 222 532 4326</p>
           <p><i class="fas fa-envelope"></i> toebosolutions@gmail.com</p>
+          <p><i class="fas fa-globe"></i> Visitas: <span id="visit-counter">0</span></p>
         </div>
       </div>
       
@@ -1602,6 +1990,44 @@
     <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram" title="Asistente IA de Instagram">
       <i class="fab fa-instagram"></i>
     </a>
+  </div>
+  
+  <!-- Botón Volver Arriba -->
+  <button id="back-to-top" title="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <!-- Chat en vivo -->
+  <div id="live-chat">
+    <div class="chat-toggle" id="chat-toggle">
+      <i class="fas fa-comments"></i>
+      <div class="chat-indicator">1</div>
+    </div>
+    
+    <div class="chat-container" id="chat-container">
+      <div class="chat-header">
+        <h3>Soporte en Vivo</h3>
+        <button class="close-chat" id="close-chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">
+          ¡Hola! 👋 Soy el asistente de TOEBO Solutions. ¿En qué puedo ayudarte hoy?
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+        <button id="send-message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Estadísticas de visitas -->
+  <div class="stats-badge">
+    <i class="fas fa-users"></i> <span id="visitors-count">0</span> visitantes hoy
   </div>
 
   <script>
@@ -1671,7 +2097,143 @@
       });
     });
 
-    // Validación de formulario - CORREGIDO
+    // Botón Volver Arriba
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Chat en vivo
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatContainer = document.getElementById('chat-container');
+    const closeChat = document.getElementById('close-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendMessageBtn = document.getElementById('send-message');
+    
+    // Mensajes predefinidos del bot
+    const botResponses = [
+      "¡Claro! Puedo ayudarte con información sobre nuestros servicios de desarrollo web, marketing digital y más.",
+      "¿Te interesa conocer nuestros precios o tener una consulta gratuita?",
+      "Actualmente ofrecemos servicios de desarrollo web, marketing digital y próximamente comercio electrónico.",
+      "Puedes contactarnos directamente por WhatsApp al +52 222 532 4326 o enviarnos un email a toebosolutions@gmail.com.",
+      "Nuestro horario de atención es de lunes a viernes de 9:00 am a 6:00 pm.",
+      "Sí, trabajamos con empresas de toda Latinoamérica utilizando herramientas de colaboración remota."
+    ];
+    
+    // Abrir/cerrar chat
+    chatToggle.addEventListener('click', () => {
+      chatContainer.classList.toggle('active');
+      // Ocultar indicador al abrir
+      document.querySelector('.chat-indicator').style.display = 'none';
+    });
+    
+    closeChat.addEventListener('click', () => {
+      chatContainer.classList.remove('active');
+    });
+    
+    // Enviar mensaje
+    function sendMessage() {
+      const message = chatInput.value.trim();
+      if (message) {
+        // Agregar mensaje de usuario
+        const userMessageEl = document.createElement('div');
+        userMessageEl.className = 'message user-message';
+        userMessageEl.textContent = message;
+        chatMessages.appendChild(userMessageEl);
+        
+        // Limpiar input
+        chatInput.value = '';
+        
+        // Simular respuesta después de un tiempo
+        setTimeout(() => {
+          const randomIndex = Math.floor(Math.random() * botResponses.length);
+          const botResponse = botResponses[randomIndex];
+          
+          const botMessageEl = document.createElement('div');
+          botMessageEl.className = 'message bot-message';
+          botMessageEl.textContent = botResponse;
+          chatMessages.appendChild(botMessageEl);
+          
+          // Scroll al final
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+        
+        // Scroll al final
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+    
+    sendMessageBtn.addEventListener('click', sendMessage);
+    
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    // Mostrar indicador después de 20 segundos
+    setTimeout(() => {
+      if (!chatContainer.classList.contains('active')) {
+        document.querySelector('.chat-indicator').style.display = 'flex';
+      }
+    }, 20000);
+
+    // Estadísticas de visitas
+    function updateVisitCounter() {
+      // Obtener contadores de localStorage
+      let totalVisits = localStorage.getItem('totalVisits') || 0;
+      let todayVisits = localStorage.getItem('todayVisits') || 0;
+      const lastVisitDate = localStorage.getItem('lastVisitDate');
+      const today = new Date().toDateString();
+      
+      // Incrementar contador si es la primera visita hoy
+      if (lastVisitDate !== today) {
+        totalVisits++;
+        todayVisits = 1;
+        localStorage.setItem('lastVisitDate', today);
+        localStorage.setItem('totalVisits', totalVisits);
+      } else {
+        todayVisits++;
+      }
+      
+      // Guardar en localStorage
+      localStorage.setItem('todayVisits', todayVisits);
+      
+      // Actualizar DOM
+      document.getElementById('visit-counter').textContent = totalVisits;
+      document.getElementById('visitors-count').textContent = todayVisits;
+    }
+    
+    // Inicializar contadores
+    updateVisitCounter();
+    
+    // Información de dominio .com
+    const domainInfo = document.getElementById('domain-info');
+    const closeDomain = document.getElementById('close-domain');
+    
+    // Mostrar información después de 10 segundos
+    setTimeout(() => {
+      domainInfo.classList.add('active');
+    }, 10000);
+    
+    closeDomain.addEventListener('click', () => {
+      domainInfo.classList.remove('active');
+    });
+
+    // Validación de formulario
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       // Crear campo honeypot para seguridad
@@ -1771,19 +2333,6 @@
         item.classList.toggle('active');
       });
     });
-    
-    // Monitoreo básico
-    document.querySelectorAll('a.btn, .float-btn, .submit-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        console.log('Clic en:', this.textContent || this.getAttribute('title'));
-      });
-    });
-    
-    if (contactForm) {
-      contactForm.addEventListener('submit', function() {
-        console.log('Formulario enviado');
-      });
-    }
   </script>
 </body>
 </html>
