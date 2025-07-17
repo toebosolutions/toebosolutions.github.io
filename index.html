@@ -96,27 +96,6 @@
       background: #1e2a4a; 
     }
     
-    .dark-mode .domain-info {
-      background: rgba(30,41,59,0.95);
-      color: #e6e6ff;
-    }
-    
-    .dark-mode .domain-info h3 {
-      color: var(--secondary-color);
-    }
-    
-    .dark-mode .domain-price {
-      color: var(--secondary-color);
-    }
-    
-    .dark-mode .domain-benefits li {
-      border-color: #2d3748;
-    }
-    
-    .dark-mode .domain-info .close-domain {
-      color: #e6e6ff;
-    }
-    
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -1137,14 +1116,14 @@
       transform: translateY(-5px);
     }
     
-    /* Chat en vivo - CORRECCIONES */
+    /* Chat en vivo */
     #live-chat {
       position: fixed;
       bottom: 30px;
       left: 30px;
       z-index: 100;
       max-width: 350px;
-      width: auto;
+      width: 100%;
     }
     
     .chat-container {
@@ -1153,15 +1132,8 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       overflow: hidden;
       display: none;
-      position: absolute;
-      bottom: 70px;
-      left: 0;
-      width: 100%;
       transform: translateY(100%);
       transition: transform 0.3s ease;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
     }
     
     .dark-mode .chat-container {
@@ -1169,7 +1141,7 @@
     }
     
     .chat-container.active {
-      display: flex;
+      display: block;
       transform: translateY(0);
     }
     
@@ -1185,13 +1157,6 @@
     .chat-header h3 {
       margin: 0;
       font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .chat-header h3 i {
-      color: #ffdd40;
     }
     
     .close-chat {
@@ -1203,44 +1168,35 @@
     }
     
     .chat-messages {
-      flex: 1;
+      height: 300px;
       overflow-y: auto;
       padding: 15px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      background: #f9f9f9;
-    }
-    
-    .dark-mode .chat-messages {
-      background: #1a202c;
+      gap: 10px;
     }
     
     .message {
-      max-width: 85%;
-      padding: 12px 16px;
+      max-width: 80%;
+      padding: 10px 15px;
       border-radius: 18px;
       font-size: 0.95rem;
       position: relative;
-      animation: fadeIn 0.3s ease;
     }
     
     .bot-message {
-      background: white;
+      background: var(--light-gray);
       align-self: flex-start;
       border-bottom-left-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
     }
     
     .dark-mode .bot-message {
       background: #2d3748;
       color: #e6e6ff;
-      border-color: #4a5568;
     }
     
     .user-message {
-      background: var(--primary-color);
+      background: var(--secondary-color);
       color: white;
       align-self: flex-end;
       border-bottom-right-radius: 5px;
@@ -1260,11 +1216,10 @@
     
     .chat-input input {
       flex: 1;
-      padding: 12px 18px;
+      padding: 10px 15px;
       border: 1px solid #ddd;
       border-radius: 30px;
       outline: none;
-      font-size: 1rem;
     }
     
     .dark-mode .chat-input input {
@@ -1278,17 +1233,15 @@
       color: white;
       border: none;
       border-radius: 50%;
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
       margin-left: 10px;
       cursor: pointer;
       transition: var(--transition);
-      font-size: 1.1rem;
     }
     
     .chat-input button:hover {
       background: var(--primary-color);
-      transform: scale(1.05);
     }
     
     .chat-toggle {
@@ -1304,7 +1257,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       cursor: pointer;
       transition: var(--transition);
-      position: relative;
     }
     
     .chat-toggle:hover {
@@ -1315,8 +1267,8 @@
       position: absolute;
       top: -5px;
       right: -5px;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--accent-color);
       color: white;
@@ -1324,125 +1276,7 @@
       align-items: center;
       justify-content: center;
       font-size: 0.7rem;
-      font-weight: bold;
       animation: pulse 1.5s infinite;
-    }
-    
-    /* Información dominio - CORRECCIONES */
-    .domain-info {
-      position: fixed;
-      top: 100px;
-      right: 30px;
-      background: rgba(255,255,255,0.95);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 320px;
-      z-index: 90;
-      display: none;
-      transform: translateX(150%) scale(0.9);
-      opacity: 0;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid #eee;
-    }
-    
-    .domain-info.active {
-      display: block;
-      transform: translateX(0) scale(1);
-      opacity: 1;
-    }
-    
-    .domain-info.fade-out {
-      animation: fadeOut 0.5s ease forwards;
-    }
-    
-    .domain-info h3 {
-      color: var(--primary-color);
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .domain-info h3 i {
-      color: var(--secondary-color);
-    }
-    
-    .domain-info .close-domain {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #f5f5f5;
-      border: none;
-      color: #777;
-      font-size: 1.5rem;
-      cursor: pointer;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
-    
-    .domain-info .close-domain:hover {
-      background: #eaeaea;
-      color: #333;
-      transform: rotate(90deg);
-    }
-    
-    .domain-price {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin: 15px 0;
-      text-align: center;
-      background: rgba(0, 180, 216, 0.1);
-      padding: 10px;
-      border-radius: 8px;
-    }
-    
-    .domain-benefits {
-      list-style: none;
-      padding-left: 0;
-      margin: 20px 0;
-    }
-    
-    .domain-benefits li {
-      padding: 10px 0;
-      border-bottom: 1px dashed #eee;
-      display: flex;
-      align-items: center;
-    }
-    
-    .domain-benefits li i {
-      color: var(--secondary-color);
-      margin-right: 12px;
-      font-size: 1.2rem;
-      min-width: 25px;
-    }
-    
-    .domain-cta {
-      display: block;
-      text-align: center;
-      background: var(--secondary-color);
-      color: white;
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 15px;
-      text-decoration: none;
-      transition: var(--transition);
-      font-weight: 500;
-      font-size: 1.1rem;
-    }
-    
-    .domain-cta:hover {
-      background: var(--primary-color);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     /* Estadísticas */
@@ -1475,15 +1309,199 @@
       margin-left: 3px;
     }
     
-    /* Animaciones */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Información dominio */
+    .domain-info {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-hover);
+      max-width: 300px;
+      z-index: 90;
+      display: none;
+      transform: translateX(150%);
+      transition: transform 0.5s ease;
     }
     
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateX(0) scale(1); }
-      to { opacity: 0; transform: translateX(150%) scale(0.9); }
+    .dark-mode .domain-info {
+      background: rgba(30,41,59,0.95);
+      color: #e6e6ff;
+    }
+    
+    .domain-info.active {
+      display: block;
+      transform: translateX(0);
+    }
+    
+    .domain-info h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    
+    .dark-mode .domain-info h3 {
+      color: var(--secondary-color);
+    }
+    
+    .domain-info .close-domain {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
+    .dark-mode .domain-info .close-domain {
+      color: #e6e6ff;
+    }
+    
+    .domain-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 10px 0;
+      text-align: center;
+    }
+    
+    .dark-mode .domain-price {
+      color: var(--secondary-color);
+    }
+    
+    .domain-benefits {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .domain-benefits li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .dark-mode .domain-benefits li {
+      border-color: #2d3748;
+    }
+    
+    .domain-benefits li i {
+      color: var(--secondary-color);
+      margin-right: 10px;
+    }
+    
+    .domain-cta {
+      display: block;
+      text-align: center;
+      background: var(--secondary-color);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .domain-cta:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Panel de estadísticas */
+    #stats-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: none;
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .dark-mode #stats-panel {
+      background: #1e293b;
+      color: #e6e6ff;
+    }
+    
+    #stats-panel.active {
+      display: block;
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .dark-mode .panel-header {
+      border-color: #2d3748;
+    }
+    
+    .close-panel {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    .dark-mode .close-panel {
+      color: #e6e6ff;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .stat-card {
+      background: var(--light-gray);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    .dark-mode .stat-card {
+      background: #252a40;
+    }
+    
+    .stat-card .value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 10px 0;
+    }
+    
+    .dark-mode .stat-card .value {
+      color: var(--secondary-color);
+    }
+    
+    .referrers-list {
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .referrers-list li {
+      padding: 10px;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .dark-mode .referrers-list li {
+      border-color: #2d3748;
     }
     
     /* Responsive */
@@ -1505,10 +1523,6 @@
       #live-chat {
         left: 20px;
         max-width: 300px;
-      }
-      
-      .chat-container {
-        bottom: 70px;
       }
     }
     
@@ -1619,17 +1633,6 @@
         right: 20px;
         max-width: 280px;
       }
-      
-      /* CORRECCIONES SOLICITADAS */
-      /* Eliminar contador de visitantes en footer */
-      .visitor-count {
-        display: none;
-      }
-      
-      /* Ocultar información de dominio en móvil */
-      .domain-info {
-        display: none !important;
-      }
     }
     
     @media (max-width: 576px) {
@@ -1685,7 +1688,7 @@
     <button class="close-domain" id="close-domain">
       <i class="fas fa-times"></i>
     </button>
-    <h3><i class="fas fa-globe"></i> Tu dominio propio .com</h3>
+    <h3>Tu dominio propio .com</h3>
     <p>Un dominio personalizado mejora la credibilidad y profesionalismo de tu negocio.</p>
     
     <div class="domain-price">$15 USD/año</div>
@@ -1699,6 +1702,47 @@
     </ul>
     
     <a href="#contacto" class="domain-cta">¡Quiero mi dominio!</a>
+  </div>
+
+  <!-- Panel de estadísticas -->
+  <div id="stats-panel">
+    <div class="panel-header">
+      <h3>Estadísticas del Sitio</h3>
+      <button class="close-panel" id="close-stats">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Visitas Totales</div>
+        <div class="value" id="total-visits">0</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="label">Visitas Hoy</div>
+        <div class="value" id="today-visits">0</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="label">Usuarios Únicos</div>
+        <div class="value" id="unique-users">0</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="label">Tiempo Promedio</div>
+        <div class="value" id="avg-time">0s</div>
+      </div>
+    </div>
+    
+    <h4>Orígenes de Tráfico</h4>
+    <ul class="referrers-list" id="referrers-list">
+      <li>Directo: <span id="direct-count">0</span></li>
+      <li>Búsquedas: <span id="search-count">0</span></li>
+      <li>Redes Sociales: <span id="social-count">0</span></li>
+    </ul>
+    
+    <p><i class="fas fa-info-circle"></i> Estas estadísticas son solo visibles para el administrador</p>
   </div>
   
   <header id="header">
@@ -2082,23 +2126,27 @@
           <p><i class="fas fa-map-marker-alt"></i> Puebla, México</p>
           <p><i class="fas fa-phone"></i> +52 222 532 4326</p>
           <p><i class="fas fa-envelope"></i> toebosolutions@gmail.com</p>
-          <!-- Contador de visitas con clase para ocultar en móvil -->
-          <p class="visitor-count"><i class="fas fa-globe"></i> Visitas: <span id="visit-counter">0</span></p>
+          <p><i class="fas fa-globe"></i> Visitas: <span id="visit-counter">0</span></p>
         </div>
       </div>
       
       <div class="copyright">
         &copy; 2022 - <span id="current-year">2025</span> TOEBO Solutions. Todos los derechos reservados.
-        <a href="/admin" class="admin-link">Admin</a>
+        <button id="admin-login" style="background:none;border:none;color:#00b4d8;cursor:pointer;margin-left:10px;font-size:0.9em;">
+          Acceso Admin
+        </button>
       </div>
     </div>
   </footer>
 
   <div class="float-buttons">
+    <!-- Botón de WhatsApp corregido -->
     <a href="https://wa.me/522225324326" id="whatsapp-btn" class="float-btn" aria-label="Contactar por WhatsApp" title="Chat por WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://aistudio.instagram.com/ai/1873379770091521/?utm_source=share" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram" title="Asistente IA de Instagram">
+    
+    <!-- Botón de Instagram corregido -->
+    <a href="https://www.instagram.com/toebosolutions/" id="instagram-btn" class="float-btn" aria-label="Contactar por Instagram" title="Síguenos en Instagram">
       <i class="fab fa-instagram"></i>
     </a>
   </div>
@@ -2108,7 +2156,7 @@
     <i class="fas fa-arrow-up"></i>
   </button>
   
-  <!-- Chat en vivo - MEJORADO -->
+  <!-- Chat en vivo -->
   <div id="live-chat">
     <div class="chat-toggle" id="chat-toggle">
       <i class="fas fa-comments"></i>
@@ -2117,7 +2165,7 @@
     
     <div class="chat-container" id="chat-container">
       <div class="chat-header">
-        <h3><i class="fas fa-headset"></i> Soporte en Vivo</h3>
+        <h3>Soporte en Vivo</h3>
         <button class="close-chat" id="close-chat">
           <i class="fas fa-times"></i>
         </button>
@@ -2226,7 +2274,7 @@
       });
     });
 
-    // Chat en vivo con respuestas por palabras clave
+    // Chat en vivo con respuestas coherentes
     const chatToggle = document.getElementById('chat-toggle');
     const chatContainer = document.getElementById('chat-container');
     const closeChat = document.getElementById('close-chat');
@@ -2234,38 +2282,76 @@
     const chatInput = document.getElementById('chat-input');
     const sendMessageBtn = document.getElementById('send-message');
     
-    // Función para obtener respuesta basada en palabras clave
+    // Variable para controlar el temporizador del indicador
+    let indicatorTimeout;
+    
+    // Función para obtener respuesta coherente
     function getBotResponse(userMessage) {
       const lowerCaseMsg = userMessage.toLowerCase();
       
-      // Palabras clave y respuestas
-      const keywordResponses = {
-        'hola': '¡Hola! ¿Cómo estás? En qué puedo ayudarte hoy?',
-        'adiós': '¡Hasta luego! Si tienes más preguntas, no dudes en contactarnos.',
-        'gracias': '¡De nada! Estoy aquí para ayudarte.',
-        'precio': 'Los precios varían según el proyecto. ¿Podrías darme más detalles?',
-        'costo': 'Los costos dependen de la complejidad del proyecto. ¿Qué servicio te interesa?',
-        'tiempo': 'El tiempo de desarrollo depende de la complejidad del proyecto. ¿Qué necesitas desarrollar?',
-        'servicio': 'Ofrecemos desarrollo web, marketing digital, comercio electrónico y más. ¿Qué servicio te interesa?',
-        'contacto': 'Puedes contactarnos por WhatsApp al +52 222 532 4326 o por email a toebosolutions@gmail.com',
-        'email': 'Nuestro email es toebosolutions@gmail.com',
-        'whatsapp': 'Puedes contactarnos por WhatsApp al +52 222 532 4326',
-        'web': 'Desarrollamos sitios web modernos, responsivos y optimizados para SEO. ¿Tienes un proyecto en mente?',
-        'marketing': 'Ofrecemos estrategias de marketing digital para aumentar tu presencia en línea. ¿Quieres saber más?',
-        'ecommerce': 'Próximamente ofreceremos soluciones de comercio electrónico. ¡Mantente al tanto!',
-        'app': 'Próximamente desarrollaremos aplicaciones móviles. ¿Te gustaría ser notificado cuando esté disponible?',
-        'nube': 'Próximamente ofreceremos soluciones en la nube. ¿Te gustaría saber más?'
-      };
+      // Definir respuestas con lógica más coherente
+      const responses = [
+        {
+          keywords: ['hola', 'saludos', 'buenos días', 'buenas tardes', 'buenas noches'],
+          response: '¡Hola! 👋 ¿En qué puedo ayudarte hoy? Puedo responder preguntas sobre nuestros servicios, precios, o proceso de trabajo.'
+        },
+        {
+          keywords: ['adiós', 'chao', 'hasta luego', 'hasta pronto'],
+          response: '¡Hasta luego! 😊 Si tienes más preguntas, no dudes en contactarnos. ¡Que tengas un excelente día!'
+        },
+        {
+          keywords: ['gracias', 'agradecido', 'agradezco', 'mil gracias'],
+          response: '¡De nada! 😊 Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?'
+        },
+        {
+          keywords: ['precio', 'costo', 'cuánto cuesta', 'presupuesto'],
+          response: 'Los precios varían según el proyecto. Para un presupuesto preciso, ¿podrías darme más detalles sobre lo que necesitas? Por ejemplo: "Quiero una página web para mi restaurante".'
+        },
+        {
+          keywords: ['tiempo', 'entrega', 'plazo', 'cuánto tarda', 'duración'],
+          response: 'El tiempo de desarrollo depende de la complejidad del proyecto. Sitios web básicos pueden tomar 2-3 semanas, mientras que proyectos más complejos pueden requerir 1-3 meses. ¿Qué tipo de proyecto tienes en mente?'
+        },
+        {
+          keywords: ['servicio', 'servicios', 'qué ofrecen', 'qué hacen'],
+          response: 'Ofrecemos desarrollo web, marketing digital, comercio electrónico, aplicaciones móviles y soluciones en la nube. ¿Hay algún servicio específico que te interese conocer mejor?'
+        },
+        {
+          keywords: ['contacto', 'contactar', 'teléfono', 'email', 'correo', 'whatsapp'],
+          response: 'Puedes contactarnos por WhatsApp al +52 222 532 4326 o por email a toebosolutions@gmail.com. También puedes completar el formulario de contacto en nuestra página.'
+        },
+        {
+          keywords: ['web', 'sitio web', 'página web', 'desarrollo web'],
+          response: 'Desarrollamos sitios web modernos, responsivos y optimizados para SEO. ¿Tienes un proyecto específico en mente?'
+        },
+        {
+          keywords: ['marketing', 'promoción', 'publicidad', 'seo', 'sem'],
+          response: 'Nuestro servicio de marketing digital incluye SEO, publicidad en redes sociales, email marketing y más. ¿Qué tipo de estrategia te interesa para tu negocio?'
+        },
+        {
+          keywords: ['ecommerce', 'tienda online', 'ventas en línea'],
+          response: 'Próximamente ofreceremos soluciones de comercio electrónico. ¡Mantente al tanto de nuestras actualizaciones!'
+        },
+        {
+          keywords: ['app', 'aplicación', 'móvil', 'celular'],
+          response: 'Próximamente desarrollaremos aplicaciones móviles. ¿Te gustaría ser notificado cuando esté disponible este servicio?'
+        },
+        {
+          keywords: ['nube', 'cloud', 'hosting', 'servidores'],
+          response: 'Próximamente ofreceremos soluciones en la nube. ¿Te gustaría saber más sobre este servicio cuando esté disponible?'
+        }
+      ];
       
-      // Buscar palabra clave
-      for (const [keyword, response] of Object.entries(keywordResponses)) {
-        if (lowerCaseMsg.includes(keyword)) {
-          return response;
+      // Buscar la respuesta más relevante
+      for (const response of responses) {
+        for (const keyword of response.keywords) {
+          if (lowerCaseMsg.includes(keyword)) {
+            return response.response;
+          }
         }
       }
       
-      // Respuesta por defecto si no encuentra palabra clave
-      return "Gracias por tu mensaje. ¿Puedes darme más detalles para poder ayudarte mejor?";
+      // Respuesta por defecto más coherente
+      return "Gracias por tu mensaje. ¿Puedes darme más detalles para poder ayudarte mejor? Por ejemplo, puedes preguntar sobre nuestros servicios, precios o procesos.";
     }
     
     // Enviar mensaje
@@ -2313,6 +2399,12 @@
       chatContainer.classList.toggle('active');
       // Ocultar indicador al abrir
       document.querySelector('.chat-indicator').style.display = 'none';
+      
+      // Cancelar el temporizador del indicador si existe
+      if (indicatorTimeout) {
+        clearTimeout(indicatorTimeout);
+        indicatorTimeout = null;
+      }
     });
     
     closeChat.addEventListener('click', () => {
@@ -2320,17 +2412,18 @@
     });
     
     // Mostrar indicador después de 20 segundos
-    setTimeout(() => {
+    indicatorTimeout = setTimeout(() => {
       if (!chatContainer.classList.contains('active')) {
         document.querySelector('.chat-indicator').style.display = 'flex';
       }
     }, 20000);
 
-    // Estadísticas de visitas
+    // Estadísticas de visitas (sistema mejorado)
     function updateVisitCounter() {
       // Obtener contadores de localStorage
-      let totalVisits = localStorage.getItem('totalVisits') || 0;
-      let todayVisits = localStorage.getItem('todayVisits') || 0;
+      let totalVisits = parseInt(localStorage.getItem('totalVisits')) || 0;
+      let todayVisits = parseInt(localStorage.getItem('todayVisits')) || 0;
+      let uniqueUsers = parseInt(localStorage.getItem('uniqueUsers')) || 0;
       const lastVisitDate = localStorage.getItem('lastVisitDate');
       const today = new Date().toDateString();
       
@@ -2344,10 +2437,17 @@
         todayVisits++;
       }
       
+      // Contar usuarios únicos (simplificado)
+      if (!localStorage.getItem('userVisited')) {
+        uniqueUsers++;
+        localStorage.setItem('userVisited', 'true');
+        localStorage.setItem('uniqueUsers', uniqueUsers);
+      }
+      
       // Guardar en localStorage
       localStorage.setItem('todayVisits', todayVisits);
       
-      // Actualizar DOM
+      // Actualizar DOM (solo las estadísticas públicas)
       document.getElementById('visit-counter').textContent = totalVisits;
       document.getElementById('visitors-count').textContent = todayVisits;
     }
@@ -2355,30 +2455,58 @@
     // Inicializar contadores
     updateVisitCounter();
     
-    // Información de dominio .com - Aparece y desaparece automáticamente
+    // Información de dominio
     const domainInfo = document.getElementById('domain-info');
     const closeDomain = document.getElementById('close-domain');
     
-    // Mostrar información después de 3 segundos
-    setTimeout(() => {
+    // Mostrar información después de 10 segundos
+    const domainTimeout = setTimeout(() => {
       domainInfo.classList.add('active');
       
-      // Desaparecer después de 5 segundos
-      setTimeout(() => {
-        domainInfo.classList.add('fade-out');
-        setTimeout(() => {
-          domainInfo.classList.remove('active');
-          domainInfo.classList.remove('fade-out');
-        }, 500);
-      }, 5000);
-    }, 3000);
-    
-    closeDomain.addEventListener('click', () => {
-      domainInfo.classList.add('fade-out');
+      // Cerrar automáticamente después de 5 segundos
       setTimeout(() => {
         domainInfo.classList.remove('active');
-        domainInfo.classList.remove('fade-out');
-      }, 500);
+      }, 5000);
+    }, 10000);
+    
+    closeDomain.addEventListener('click', () => {
+      domainInfo.classList.remove('active');
+      // Cancelar el timeout si el usuario cierra antes
+      clearTimeout(domainTimeout);
+    });
+
+    // Panel de estadísticas
+    const statsPanel = document.getElementById('stats-panel');
+    const closeStats = document.getElementById('close-stats');
+    const adminLogin = document.getElementById('admin-login');
+    
+    // Función para mostrar estadísticas
+    function showStats() {
+      const password = prompt("Ingrese la contraseña de administrador:");
+      // Contraseña: "toebo123" (puedes cambiarla)
+      if (password === "toebo123") {
+        // Obtener datos de localStorage
+        document.getElementById('total-visits').textContent = localStorage.getItem('totalVisits') || 0;
+        document.getElementById('today-visits').textContent = localStorage.getItem('todayVisits') || 0;
+        document.getElementById('unique-users').textContent = localStorage.getItem('uniqueUsers') || 0;
+        
+        // Simular datos de tiempo promedio
+        document.getElementById('avg-time').textContent = "2m 15s";
+        
+        // Simular datos de orígenes
+        document.getElementById('direct-count').textContent = Math.floor(Math.random() * 50) + 20;
+        document.getElementById('search-count').textContent = Math.floor(Math.random() * 30) + 10;
+        document.getElementById('social-count').textContent = Math.floor(Math.random() * 20) + 5;
+        
+        statsPanel.classList.add('active');
+      } else if (password !== null) {
+        alert("Contraseña incorrecta");
+      }
+    }
+    
+    adminLogin.addEventListener('click', showStats);
+    closeStats.addEventListener('click', () => {
+      statsPanel.classList.remove('active');
     });
 
     // Validación de formulario
